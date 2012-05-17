@@ -146,7 +146,7 @@ void LoadImage (wxImage& image, const string& fname, bool transparent)
 //------------------------------------------------------------------------------
 //  als Transparentfarbe wird das Pixel links unten genommen
 {
-  ASSERT (image.LoadFile (wxString(fname.c_str(), wxConvUTF8), wxBITMAP_TYPE_BMP));
+  ASSERT (image.LoadFile (wxString(fname.c_str(), wxConvLocal), wxBITMAP_TYPE_BMP));
 
   wxColour win_bg_col = main_win->GetBackgroundColour();
   wxColour bg_col (*wxLIGHT_GREY);
@@ -309,7 +309,7 @@ BitmapImpl::BitmapImpl (const string& kind, const string& spec)
     //This will ASSERT if it fails to load the file
     else                                      LoadImage (image, fname, true);
 
-    bitmap = image.ConvertToBitmap();
+    bitmap = image;
     return;
   }
 
@@ -384,7 +384,7 @@ BitmapImpl::BitmapImpl (const string& kind, const string& spec)
 
   // check
   ASSERT (nr >= 0 && nr < num_rows * num_cols);
-  ASSERT (num_rows > 0 && num_cols > 0 && image != 0);
+  ASSERT (num_rows > 0 && num_cols > 0 && image.IsOk());
 
   // bmp
   int i = nr / num_cols;
@@ -395,7 +395,7 @@ BitmapImpl::BitmapImpl (const string& kind, const string& spec)
   wxRect  rect (j * w, i * h, w, h);
 
   image  = image.GetSubImage (rect);
-  bitmap = image.ConvertToBitmap();
+  bitmap = image;
 }
 
 //******************************************************************************
@@ -409,7 +409,7 @@ BitmapImpl::BitmapImpl (const MinesPerfect::Bitmap* from, const MinesPerfect::Re
   ASSERT (from2 != 0);
   
   image  = from2->image.GetSubImage(rect2);
-  bitmap = image.ConvertToBitmap();
+  bitmap = image;
 }
 
 //******************************************************************************
@@ -483,7 +483,7 @@ public:
   { 
     clock_t c1 = isRunning() ? clock() : clock1;
 
-    return 1000 * (c1 - clock0) / CLK_TCK; 
+    return 1000 * (c1 - clock0) / CLOCKS_PER_SEC; 
   }
 
   clock_t start()
@@ -512,7 +512,7 @@ public:
   
   void Notify()          
   { 
-    int num2 = (clock() - clock0) / CLK_TCK;
+    int num2 = (clock() - clock0) / CLOCKS_PER_SEC;
 
     if (num_notifies != num2)
     {
@@ -537,22 +537,22 @@ void MinesPerfect::DlgNewRecord (Options* options, int num_msecs, bool certified
 //------------------------------------------------------------------------------
 {
   // board_text
-  wxString  board_text("Board:  ");
-  board_text += options->getBoardName().c_str();
+  wxString  board_text("Board:  ", wxConvLocal);
+  board_text += wxString(options->getBoardName().c_str(), wxConvLocal);
   
   // level_text
-  wxString  level_text("Level:  ");
+  wxString  level_text("Level:  ", wxConvLocal);
 
   if (options->getLevelNr() == BEGINNER)
-    level_text += "Beginner";
+    level_text += wxString("Beginner", wxConvLocal);
   else if (options->getLevelNr() == INTERMEDIATE)
-    level_text += "Intermediate";
+    level_text += wxString("Intermediate", wxConvLocal);
   else
-    level_text += "Expert";
+    level_text += wxString("Expert", wxConvLocal);
 
   // msg_text
-  wxString msg_text("You have a new record.\n\n");;
-  msg_text += board_text + "\n" + level_text;
+  wxString msg_text("You have a new record.\n\n", wxConvLocal);;
+  msg_text += board_text + wxString("\n", wxConvLocal) + level_text;
   
   // rec_nr, old_name
   int       rec_nr = options->getLevelNr();
@@ -566,19 +566,19 @@ void MinesPerfect::DlgNewRecord (Options* options, int num_msecs, bool certified
   wxString* user_list = new wxString[user_vec.size()];
 
   for (unsigned k = 0; k < user_vec.size(); ++k)
-    user_list[k] = wxString(user_vec[k].c_str());
+    user_list[k] = wxString(user_vec[k].c_str(), wxConvLocal);
 
   // new_name (Dialog)
-  wxString                        new_name = (user_vec.size() > 0) ? user_list[0] : wxString("");
+  wxString                        new_name = (user_vec.size() > 0) ? user_list[0] : wxString("", wxConvLocal);
   MinesPerfect::User::NameChecker checker;
 
   GenValidator       validator (&new_name, &checker);
-  ChooseComboDialog  dlg (main_win, msg_text, "Congratulations", 
+  ChooseComboDialog  dlg (main_win, msg_text, wxString("Congratulations", wxConvLocal),
                           user_vec.size(), user_list, validator);
 
   if (dlg.ShowModal() == wxID_OK)
   {
-    options->setRecord (rec_nr, new_name.c_str(), num_msecs, certified_board);
+    options->setRecord (rec_nr, string(new_name.char_str()), num_msecs, certified_board);
   
     ShowBestTimesDialog dlg3(main_win, main_win->game->m_options);
     dlg3.ShowModal();
