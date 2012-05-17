@@ -46,7 +46,10 @@
 
 #include "dialogs.h"
 #include "app.h"
+
+#pragma GCC diagnostic ignored "-Wwrite-strings"
 #include "mine32.xpm"
+#pragma GCC diagnostic pop
 
 
 // Konstanten

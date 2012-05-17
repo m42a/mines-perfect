@@ -56,7 +56,10 @@
 
 #include "app.h"
 #include "dialogs.h"
+
+#pragma GCC diagnostic ignored "-Wwrite-strings"
 #include "mine16.xpm"
+#pragma GCC diagnostic pop
 
 MainWindow*  main_win = 0; // fuer api.cpp
 

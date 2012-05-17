@@ -66,6 +66,7 @@
 #include "app.h"
 #include "dialogs.h"
 
+#pragma GCC diagnostic ignored "-Wwrite-strings"
 #include "lcd.xpm"
 #include "symbols.xpm"
 #include "smileys.xpm"
@@ -75,7 +76,8 @@
 #include "triangle.xpm"
 #include "hexagon.xpm"
 #include "grid3d.xpm"
- 
+#pragma GCC diagnostic pop
+
 // globale 
 extern MainWindow*  main_win;
 
