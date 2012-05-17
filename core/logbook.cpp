@@ -590,41 +590,55 @@ string Logbook::exportStr () const
   //--- stat. Informationen ---
 
   //
-  text =  itoa (Glob::VERSION, buf, 10); 
+  sprintf(buf, "%d", Glob::VERSION);
+  text =  buf;
   text += sep;
-  text += itoa (_VARIANT_, buf, 10);
+  sprintf(buf, "%d", _VARIANT_);
+  text += buf;
   text += sep;
   text += options.getBoardName();
   text += sep;
-  text += itoa (options.getLevelNr(), buf, 10);
+  sprintf(buf, "%d", options.getLevelNr());
+  text += buf;
   text += sep;
 
   if (options.getLevelNr() == USER_DEFINED)
   {
-    text += itoa (options.getHeight(), buf, 10);
+    sprintf(buf, "%d", options.getHeight());
+    text += buf;
     text += sep;
-    text += itoa (options.getWidth(), buf, 10);
+    sprintf(buf, "%d", options.getWidth());
+    text += buf;
     text += sep;
-    text += itoa (options.getDeep(), buf, 10);
+    sprintf(buf, "%d", options.getDeep());
+    text += buf;
     text += sep;
-    text += itoa (options.getNumMines(), buf, 10);
+    sprintf(buf, "%d", options.getNumMines());
+    text += buf;
     text += sep;
-    text += itoa (options.getNumWholes(), buf, 10);
+    sprintf(buf, "%d", options.getNumWholes());
+    text += buf;
     text += sep;
   }
 
-  text += itoa (options.getModus(), buf, 10);
+  sprintf(buf, "%d", options.getModus());
+  text += buf;
   text += sep;
-  text += itoa (options.getMurphysLaw(), buf, 10);
+  sprintf(buf, "%d", options.getMurphysLaw());
+  text += buf;
   text += sep;
 
-  text += itoa (options.getAutoStage(), buf, 10);
+  sprintf(buf, "%d", options.getAutoStage());
+  text += buf;
   text += sep;
-  text += itoa (options.getMaxStage(), buf, 10);
+  sprintf(buf, "%d", options.getMaxStage());
+  text += buf;
   text += sep;
-  text += itoa (options.getShowMines(), buf, 10);
+  sprintf(buf, "%d", options.getShowMines());
+  text += buf;
   text += sep;
-  text += itoa (rand_seq, buf, 10);
+  sprintf(buf, "%d", rand_seq);
+  text += buf;
   text += sep;
 
   //--- dyn. Informationen ---

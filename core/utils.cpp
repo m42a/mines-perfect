@@ -86,7 +86,7 @@ AssertException::AssertException (const char* fname, int linenr)
 //------------------------------------------------------------------------------
 {
   char buf[20];
-  itoa (linenr, buf, 10);
+  sprintf(buf, "%d", linenr);
 
   string fname2 = fname;
   for (string::iterator i = fname2.begin(); i != fname2.end(); ++i)
