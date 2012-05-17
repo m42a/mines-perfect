@@ -1,5 +1,5 @@
 CPP:=g++
-CFLAGS:=-D_VARIANT_=4
+CFLAGS:=-O3 -D_VARIANT_=4
 WXLIBS:=$(shell wx-config --libs)
 WXFLAGS:=$(shell wx-config --cxxflags)
 
@@ -11,7 +11,7 @@ OBJS:=$(CORE_OBJS) $(GUI_OBJS) $(WX_OBJS)
 DEPENDS:=$(OBJS:%.o=%.d)
 
 mines-perfect: $(OBJS)
-	$(CPP) -o mines-perfect $(CFLAGS) $(WXLIBS) $(OBJS)
+	$(CPP) -o mines-perfect $(CFLAGS) $(OBJS) $(WXLIBS)
 
 -include $(DEPENDS)
 
@@ -27,4 +27,4 @@ $(WX_OBJS): %.o: %.cpp
 .PHONY: clean
 
 clean:
-	rm -f $(OBJS) $(DEPENDS) *~
+	rm -f mines-perfect $(OBJS) $(DEPENDS) *~
