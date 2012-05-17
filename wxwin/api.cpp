@@ -651,7 +651,7 @@ void MinesPerfect::FindFiles (vector<string>& files, const string& pattern)
 //------------------------------------------------------------------------------
 {
   wxString  fname;
-  wxDir     dir (".");
+  wxDir     dir (wxString(".", wxConvLocal));
 
   // Aufruf von dir.GetFirst oder dir.GetNext liefert einen Fehler 
   // (aber erst spaeter), falls das Verzeichnis nicht existiert.
@@ -660,16 +660,16 @@ void MinesPerfect::FindFiles (vector<string>& files, const string& pattern)
   unsigned i = pattern.rfind('/');
 
   if (i != string::npos
-  &&  !wxDir::Exists (pattern.substr(0, i).c_str()))
+  &&  !wxDir::Exists (wxString(pattern.substr(0, i).c_str(), wxConvLocal)))
       return;
 
   // files
-  if (dir.GetFirst (&fname, wxString (pattern.c_str())))
+  if (dir.GetFirst (&fname, wxString (pattern.c_str(), wxConvLocal)))
   {
-    files.push_back (fname.c_str());
+    files.push_back (string(fname.char_str()));
     
     while (dir.GetNext (&fname))
-      files.push_back (fname.c_str());
+      files.push_back (string(fname.char_str()));
   }
 }
 
@@ -677,14 +677,14 @@ void MinesPerfect::FindFiles (vector<string>& files, const string& pattern)
 bool MinesPerfect::FileExist (const string& fname)
 //------------------------------------------------------------------------------
 {
-  return wxFile::Exists (fname.c_str());
+  return wxFile::Exists (wxString(fname.c_str(), wxConvLocal));
 }
 
 //******************************************************************************
 void MinesPerfect::ShowMessageDlg (const string& text, const string& title)
 //------------------------------------------------------------------------------
 {
-  wxMessageDialog  dlg (main_win, text.c_str(), title.c_str(), wxOK);
+  wxMessageDialog  dlg (main_win, wxString(text.c_str(), wxConvLocal), wxString(title.c_str(), wxConvLocal), wxOK);
   dlg.ShowModal();
 }
 
@@ -694,12 +694,12 @@ bool MinesPerfect::StartBrowser (const string& protokoll, const string& fname)
 {
   // ftype
   wxMimeTypesManager mime;
-  wxFileType*        ftype = mime.GetFileTypeFromExtension("html");
+  wxFileType*        ftype = mime.GetFileTypeFromExtension(wxString("html", wxConvLocal));
   
   if (ftype == 0)
   {
-    wxMessageDialog  dlg (main_win, "There's no browser for html-files!", 
-                          "Error", wxOK | wxICON_ERROR);
+    wxMessageDialog  dlg (main_win, wxString("There's no browser for html-files!", wxConvLocal), 
+                          wxString("Error", wxConvLocal), wxOK | wxICON_ERROR);
     dlg.ShowModal();
     return false;
   }
@@ -707,28 +707,28 @@ bool MinesPerfect::StartBrowser (const string& protokoll, const string& fname)
   // mime_type
   wxString  mime_type;
   ftype->GetMimeType (&mime_type);
-  if (mime_type != "text/html")
+  if (mime_type != wxString("text/html", wxConvLocal))
   {
-    wxMessageDialog  dlg (main_win, "Mimetype is wrong!", 
-                          "Error", wxOK | wxICON_ERROR);
+    wxMessageDialog  dlg (main_win, wxString("Mimetype is wrong!", wxConvLocal), 
+                          wxString("Error", wxConvLocal), wxOK | wxICON_ERROR);
     dlg.ShowModal();
     return false;
   }
  
   // command, params
-  wxFileType::MessageParameters  params (fname.c_str(), mime_type);
+  wxFileType::MessageParameters  params (wxString(fname.c_str(), wxConvLocal), mime_type);
   wxString                       command;
 
   if (!ftype->GetOpenCommand(&command, params))
   {
-    wxMessageDialog  dlg (main_win, "Error in 'GetOpenCommand'", 
-                          "Error", wxOK | wxICON_ERROR);
+    wxMessageDialog  dlg (main_win, wxString("Error in 'GetOpenCommand'", wxConvLocal), 
+                          wxString("Error", wxConvLocal), wxOK | wxICON_ERROR);
     dlg.ShowModal();
     return false;
   }
 
   if (protokoll != "file")
-    command.Replace("file://", wxString(protokoll.c_str()) + "://", false);
+    command.Replace(wxString("file://", wxConvLocal), wxString(protokoll.c_str(), wxConvLocal) + wxString("://", wxConvLocal), false);
 
   // execute
   wxExecute (command);
