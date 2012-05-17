@@ -19,7 +19,8 @@
 #include <string>
 #include <cstdlib>
 
-#ifdef LINUX
+#ifdef __unix__
+  #include <strings.h>
   #define stricmp strcasecmp
 #endif
 
