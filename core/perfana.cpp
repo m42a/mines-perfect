@@ -110,7 +110,7 @@ Perf::~Perf()
 
   ASSERT (clock0 != -1);
   
-  ulong     total  = (ulong) ((1000000.0 / CLK_TCK) * (clock1 - clock0));
+  ulong     total  = (ulong) ((1000000.0 / CLOCKS_PER_SEC) * (clock1 - clock0));
   int       fnr    = call_stack.back();
   call_stack.pop_back();
   if (functions[fnr].rec_level == 1)

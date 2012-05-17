@@ -2191,7 +2191,7 @@ struct BoardReadError
   // not playing
   if (!logbook.isPlaying())
   {
-    int  used_time = (clock() - clock0) * 1000 / CLK_TCK;
+    int  used_time = (clock() - clock0) * 1000 / CLOCKS_PER_SEC;
 
     if (used_time >= max_time_multi)
       return 0; // Zeit abgelaufen
