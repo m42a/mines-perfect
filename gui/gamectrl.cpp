@@ -36,6 +36,7 @@ using namespace std;
 // 1: Borland 5, Windows
 // 2: Dev-Cpp, GCC 2.95, WX 2.29, Windows (V. 130)
 // 3: VisualC++ 6.0, WX 2.40, Windows (V. 140)
+// 4: g++ 4.7, WX 2.8.12, Linux 3.3.6
 
 // Konstanten zur Fehlersuche
 namespace MinesPerfect

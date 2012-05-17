@@ -1,5 +1,5 @@
 CPP:=g++
-CFLAGS:=
+CFLAGS:=-D_VARIANT_=4
 
 CORE_OBJS:=core/board.o core/eqs.o core/logbook.o core/options.o core/perfana.o core/utils.o core/vargroup.o
 GUI_OBJS:=gui/bevelctrl.o gui/bitmapctrl.o gui/boardctrl.o gui/buttonctrl.o gui/ctrl.o gui/gamectrl.o gui/lcdctrl.o gui/smileyctrl.o
