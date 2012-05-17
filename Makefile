@@ -14,7 +14,7 @@ mines-perfect: $(OBJS)
 -include $(DEPENDS)
 
 $(OBJS): %.o: %.cpp
-		$(CPP) -MMD -MP -c $(CFLAGS) $<
+		$(CPP) -MMD -MP -c $(CFLAGS) $< -o $@
 
 .PHONY: clean
 
