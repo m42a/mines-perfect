@@ -18,7 +18,9 @@
 
 //#include <string>
 //#include <vector>
-#include <time.h>
+#include <ctime>
+#include <cctype>
+#include <cstdio>
 #include <algorithm>
 
 //#include <fstream>
@@ -76,7 +78,8 @@ std::string MinesPerfect::Lower (const std::string& s)
 
 //  for (string::iterator i = s2.begin(); i != s2.end(); ++i)
 //    *i = tolower(*i);
-  transform (s2.begin(), s2.end(), s2.begin(), tolower);
+  int (*func)(int)=std::tolower;
+  transform (s2.begin(), s2.end(), s2.begin(), func);
 
   return s2;
 }
