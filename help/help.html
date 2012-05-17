@@ -1,0 +1,588 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/transitional.dtd">
+<html xmlns="http://www.w3.org/TR/xhtml1">
+<head>
+<meta content="text/html; charset=iso-8859-1" />
+<title>Help</title>
+</head>
+<body>
+<basefont face="Comic Sans MS" />
+
+<table width="100%" summary="">
+<tr>
+<td>
+<h3>Contents</h3>
+</td>
+<td align="right"><a href="hilfe.html"><img src="flag_de.bmp" alt=
+"" /></a></td>
+</tr>
+</table>
+
+<ol>
+<li><a href="#newbies">For Absolute Beginners</a></li>
+
+<li><a href="#mousehandling">Opening And Flagging</a></li>
+
+<li><a href="#stages">The Three Stages</a></li>
+
+<li><a href="#modi">The Different Modes Of The Game</a></li>
+
+<li><a href="#menus">Menu</a>
+
+<ul>
+<li><a href="#file-menu">File-Menu</a></li>
+
+<li><a href="#board-menu">Board-Menu</a></li>
+
+<li><a href="#help-menu">Help-Menu</a></li>
+</ul>
+</li>
+
+<li><a href="#sound">Sound</a></li>
+
+<li><a href="#contact">Contact</a></li>
+</ol>
+
+<a name="newbies"></a>
+
+<h3>For Absolute Beginners</h3>
+
+<p>There are a number of mines which are hidden on the board. If you are open a
+cell with a mine the game is over. The goal of the game is to uncover all
+fields without a mine as fast as possible. Open cells give you a hint, how many
+neighbour-cells contain a mine. With analysing the open cells, you can
+draw conclusions about some uncovered cells.</p>
+
+<a name="mousehandling"></a>
+
+<h3>Opening And Flagging</h3>
+
+<p>The left mousebutton is for opening the right for flagging cells. A click on
+a covered cell has a reaction on this cell, a click on an uncovered one has a
+reaction on all covered neighbours. I will call the second method
+<a name="quickopen"><b>quick opening</b>
+respectively <b>quick flagging</b>. The condition for quick opening is, that all mines
+must be found, e.g. that the number in the cell are the same as the number of
+flagged neighbours. The condition for quick flagging is, that all possible cells
+are open, e.g. that the number in the cell are the number of covered
+neighbours. If the conditions aren't fulfil, nothing will happens.</p>
+
+<table border="1" cellpadding="10" cellspacing="0" summary="" align="center"
+align="center">
+<thead>
+<tr align="center">
+<th>Before</th>
+<th>Action</th>
+<th>After</th>
+<th>Comment</th>
+</tr>
+</thead>
+
+<tbody>
+<tr align="center">
+<td><img src="mouse_cb.bmp" alt="" /></td>
+<td><img src="mouse_l.bmp" alt="" /></td>
+<td><img src="mouse_cla.bmp" alt="" /></td>
+<td>Opening one cell</td>
+</tr>
+
+<tr align="center">
+<td><img src="mouse_cb.bmp" alt="" /></td>
+<td><img src="mouse_r.bmp" alt="" /></td>
+<td><img src="mouse_cra.bmp" alt="" /></td>
+<td>Flagging one cell</td>
+</tr>
+
+<tr align="center">
+<td><img src="mouse_olb.bmp" alt="" /></td>
+<td><img src="mouse_l.bmp" alt="" /></td>
+<td><img src="mouse_ola.bmp" alt="" /></td>
+<td>The one mine is found -&gt; all covered neighbours will open</td>
+</tr>
+
+<tr align="center">
+<td><img src="mouse_orb.bmp" alt="" /></td>
+<td><img src="mouse_r.bmp" alt="" /></td>
+<td><img src="mouse_ora.bmp" alt="" /></td>
+<td>All unmined cells are open -&gt; all covered neighbours will flagged</td>
+</tr>
+</tbody>
+</table>
+
+<a name="stages"></a>
+
+<h3>The Three Stages</h3>
+
+<p>The difficulty to find a new cell, which can be open or flagged, can differ
+a lot. Mines-Perfect has a classifying with three stages. In the first stage,
+it is possible to find a new cell with analysing only one uncovered cell. If
+such a cell exists, then you can use the <a href="#quickopen">quick open or flag</a>
+method for the
+neighbours. In the second stage you must two, in the
+third stage you must three or more open cells combine. Mostly a board contains
+more than one group with different stages. In that case the simplest one
+determine the stage of the board and will be shown by the smiley:</p>
+
+<table border="1" cellpadding="4" cellspacing="0" summary="">
+<col align="center" />
+<col align="center" />
+<col align="center" />
+<col />
+<thead>
+<tr valign="TOP">
+<th>Stage</th>
+<th>Smiley</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr valign="TOP">
+<td>1</td>
+<td><img src="smiley1.bmp" alt="" /></td>
+<td><img src="stage1.bmp" alt="" /></td>
+<td>
+<p>The covered mine must contain a mine. This will be determined by only one
+open cell.</p>
+</td>
+</tr>
+
+<tr valign="TOP">
+<td>2</td>
+<td><img src="smiley2.bmp" alt="" /></td>
+<td><img src="stage2.bmp" alt="" /></td>
+<td>
+<p>The two left covered cells contain one, the three left two mines. Therefore
+the third cell must contain a cell. This was determined with the analyse of two
+open cells.</p>
+</td>
+</tr>
+
+<tr valign="TOP">
+<td>3</td>
+<td><img src="smiley3.bmp" alt="" /></td>
+<td><img src="stage3.bmp" alt="" /></td>
+<td>
+<p>There are one mine in the two covered cells below just as in the right two
+cells. All five contains two cells. Consequently there can't be a mine, in the
+cell right below. For that conclusion we are needed three open cells.</p>
+</td>
+</tr>
+
+<tr valign="TOP">
+<td>-</td>
+<td><img src="smiley0.bmp" alt="" /> <img src="smiley4.bmp" alt="" /></td>
+<td>-</td>
+<td>
+<p>It isn't possible to determine the state of one or more cells. The further
+behaviour depends on the <a href="#modi">Mode</a>. The left smiley will appear
+in the Immune- or Lucky-, the right in the Original-Mode. There are no such
+situation in the Hint- or Start-up-Mode.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+<a name="modi"></a>
+
+<h3>The Different Modes Of The Game</h3>
+
+<p>The core of the program consist of a high-optimised solving-algorithm, which
+can solve every game, that is solve-able. This algorithm is be used to recognise
+<b>dead-end situations</b> and help the user. The exact way of the help depends
+on the mode:</p>
+
+<ol>
+<li><a name="original-modus"></a>
+
+<p><b>Original-Mode:</b> As the original game, nothing will happen in such a
+situation and there is no protection against the mines.</p>
+</li>
+
+<li><a name="hint-modus"></a>
+
+<p><b>Hint-Mode:</b> The program will open or flag a cell automatic.</p>
+</li>
+
+<li><a name="immune-modus"></a>
+
+<p><b>Immune-Mode:</b> The next step of the user is protected. That means, if
+he opens a mine-cell, then the game will go on.</p>
+</li>
+
+<li><a name="lucky-modus"></a>
+
+<p><b>Lucky-Mode:</b> The user will have 'luck' at his next step. That means he
+cannot open a cell with a mine (try it with the undo-function). If need be the
+solve-algorithm will reorganise the mines (the numbers of the open cells will
+keep valid!!). That is only possible in a dead-end-situation. Therefore this
+mode and the reduction of the <a href="#help-menu">max. stage</a> couldn't be
+turn on together.</p>
+</li>
+
+<li><a name="startup-modus"></a>
+
+<p><b>Start-up-Mode:</b> Before the game it will open and flag enough cells, so
+that such a situation cannot appear.</p>
+</li>
+</ol>
+
+<p>Which mode the user choose, depends only on his personal taste. It is even
+possible to change the mode in a running game. But that's not always
+convenient. For example, if you change from the start-up- to the hint-mode then
+there will never be a hint.</p>
+
+<p>Besides it exist an option called <a name="murphys-law"></a><b>Murphy's
+Law</b>. It is the counterpart of the lucky-mode: Open the user a cell which
+can theoretical contains a mine, then there will be a mine.</p>
+
+<a name="menus"></a>
+
+<h3>Menu</h3>
+
+<a name="file-menu"></a>
+
+<h4>File-Menu</h4>
+
+<table border="0" cellpadding="3" cellspacing="2" bgcolor="#bfbfbf" summary="">
+<tr>
+<td bgcolor="#00007f"><font color="#ffffff">File</font></td>
+<td>Boards</td>
+<td>Help</td>
+</tr>
+</table>
+
+<table border="0" cellpadding="3" cellspacing="2" bgcolor="#ffffff" summary="">
+<col bgcolor="#bfbfbf" />
+<col bgcolor="#bfbfbf" />
+<col bgcolor="#ffffff" />
+<tr>
+<td>New</td>
+<td>Ctrl+N</td>
+<td>Start a new game.</td>
+</tr>
+
+<tr>
+<td>Open</td>
+<td>Ctrl+O</td>
+<td>Open a saved game.</td>
+</tr>
+
+<tr>
+<td>Save</td>
+<td>Ctrl+S</td>
+<td>Save a game.</td>
+</tr>
+
+<tr>
+<td>Beginner</td>
+<td>.</td>
+<td>Start a simple game.</td>
+</tr>
+
+<tr>
+<td>Intermediate</td>
+<td>.</td>
+<td>Start a somewhat more complicated game.</td>
+</tr>
+
+<tr>
+<td>Expert</td>
+<td>.</td>
+<td>Start a difficult game.</td>
+</tr>
+
+<tr>
+<td>Selfdefined</td>
+<td>.</td>
+<td>Start a userdefined game.</td>
+</tr>
+
+<tr>
+<td>Original</td>
+<td>.</td>
+<td><a href="#original-modus">Set the Original-Mode</a>.</td>
+</tr>
+
+<tr>
+<td>Hint</td>
+<td>.</td>
+<td><a href="#hint-modus">Set the Hint-Mode</a>.</td>
+</tr>
+
+<tr>
+<td>Immune</td>
+<td>.</td>
+<td><a href="#immune-modus">Set the Immune-Mode</a>.</td>
+</tr>
+
+<tr>
+<td>Lucky</td>
+<td>.</td>
+<td><a href="#lucky-modus">Set the Lucky-Mode</a>.</td>
+</tr>
+
+<tr>
+<td>Start up</td>
+<td>.</td>
+<td><a href="#startup-modus">Set the Start-up-Modus</a>.</td>
+</tr>
+
+<tr>
+<td>Murphy's Law</td>
+<td>.</td>
+<td>Toggle the <a href="#murphys-law">Murphy's Law</a>.</td>
+</tr>
+
+<tr>
+<td>Best Times</td>
+<td>.</td>
+<td>Shows the best times of the actual board. From here you can delete the
+entries or send them to the global hiscorelist.</td>
+</tr>
+
+<tr>
+<td>Exit</td>
+<td>.</td>
+<td>Exit the game.</td>
+</tr>
+</table>
+
+<a name="board-menu"></a>
+
+<h4>Board-Menu</h4>
+
+<table border="0" cellpadding="3" cellspacing="2" bgcolor="#bfbfbf" summary="">
+<tr>
+<td>File</td>
+<td bgcolor="#00007f"><font color="#ffffff">Boards</font></td>
+<td>Help</td>
+</tr>
+</table>
+
+<table border="0" cellpadding="3" cellspacing="2" bgcolor="#ffffff" summary="">
+<col bgcolor="#ffffff" />
+<col bgcolor="#bfbfbf" />
+<col bgcolor="#ffffff" />
+<tr>
+<td><font color="#ffffff">File</font></td>
+<td>Square</td>
+<td>Board with squares.</td>
+</tr>
+
+<tr>
+<td><font color="#ffffff">File</font></td>
+<td>Hexagon</td>
+<td>Board with hexagons.</td>
+</tr>
+
+<tr>
+<td><font color="#ffffff">File</font></td>
+<td>Triangle</td>
+<td>Board with triangles.</td>
+</tr>
+
+<tr>
+<td><font color="#ffffff">File</font></td>
+<td>...</td>
+<td>and more</td>
+</tr>
+</table>
+
+<a name="help-menu"></a>
+
+<h4>Help-Menu</h4>
+
+<table border="0" cellpadding="3" cellspacing="2" bgcolor="#bfbfbf" summary="">
+<tr>
+<td>File</td>
+<td>Boards</td>
+<td bgcolor="#00007f"><font color="#ffffff">Help</font></td>
+</tr>
+</table>
+
+<table border="0" cellpadding="3" cellspacing="2" bgcolor="#ffffff" summary="">
+<col bgcolor="#ffffff" />
+<col bgcolor="#ffffff" />
+<col bgcolor="#bfbfbf" />
+<col bgcolor="#bfbfbf" />
+<col bgcolor="#bfbfbf" />
+<col bgcolor="#ffffff" />
+<tr>
+<td><font color="#ffffff">File</font></td>
+<td><font color="#ffffff">Boards</font></td>
+<td>Hint</td>
+<td>.</td>
+<td>Ctrl+H</td>
+<td>Shows one or two open cells which can be used to determine the state of a
+covered cell in stage one and two. Shows some covered cells which can be open
+or flag in stage three.</td>
+</tr>
+
+<tr>
+<td><font color="#ffffff">File</font></td>
+<td><font color="#ffffff">Boards</font></td>
+<td>SolveOne</td>
+<td>.</td>
+<td>Ctrl+L</td>
+<td>Solve one move.</td>
+</tr>
+
+<tr>
+<td><font color="#ffffff">File</font></td>
+<td><font color="#ffffff">Boards</font></td>
+<td>SolveAll</td>
+<td>Stage1,2,3</td>
+<td>Ctrl+1,2,3</td>
+<td>Solve all cells till the chose <a href="#stages">stage</a>
+(inclusive).</td>
+</tr>
+
+<tr>
+<td><font color="#ffffff">File</font></td>
+<td><font color="#ffffff">Boards</font></td>
+<td>SolveAuto</td>
+<td>Stage0,1,2,3</td>
+<td>.</td>
+<td>Execute SolveAll after each action.</td>
+</tr>
+
+<tr>
+<td><font color="#ffffff">File</font></td>
+<td><font color="#ffffff">Boards</font></td>
+<td>MaxStage</td>
+<td>Stage1,2,3</td>
+<td>.</td>
+<td>Reduce the max. <a href="#stages">stage</a>. On this way, help will grant
+earlier (not together with the <a href="#lucky-modus">Lucky-Mode</a>).</td>
+</tr>
+
+<tr>
+<td><font color="#ffffff">File</font></td>
+<td><font color="#ffffff">Boards</font></td>
+<td>Show Mines</td>
+<td>.</td>
+<td>.</td>
+<td>Show or hide Mines</td>
+</tr>
+
+<tr>
+<td><font color="#ffffff">File</font></td>
+<td><font color="#ffffff">Boards</font></td>
+<td>Undo</td>
+<td>.</td>
+<td>Ctrl+Z</td>
+<td>Undo the last move. This can take some time, cause the whole game will
+replayed.</td>
+</tr>
+
+<tr>
+<td><font color="#ffffff">File</font></td>
+<td><font color="#ffffff">Boards</font></td>
+<td>Redo</td>
+<td>.</td>
+<td>Ctrl+Y</td>
+<td>Redo the last move.</td>
+</tr>
+
+<tr>
+<td><font color="#ffffff">File</font></td>
+<td><font color="#ffffff">Boards</font></td>
+<td>Undo All</td>
+<td>.</td>
+<td>Shift+Ctrl+Z</td>
+<td>Restart at the beginning (quicker than Undo).</td>
+</tr>
+
+<tr>
+<td><font color="#ffffff">File</font></td>
+<td><font color="#ffffff">Boards</font></td>
+<td>Content</td>
+<td>.</td>
+<td>.</td>
+<td>Shows this file.</td>
+</tr>
+
+<tr>
+<td><font color="#ffffff">File</font></td>
+<td><font color="#ffffff">Boards</font></td>
+<td>Homepage</td>
+<td>.</td>
+<td>.</td>
+<td>Open www.czeppi.de</td>
+</tr>
+
+<tr>
+<td><font color="#ffffff">File</font></td>
+<td><font color="#ffffff">Boards</font></td>
+<td>About</td>
+<td>.</td>
+<td>.</td>
+<td>Shortinfo about the game.</td>
+</tr>
+</table>
+
+<a name="sound"></a>
+
+<h3>Sound</h3>
+
+<p>If you want sound on special events, then you can copy a *.wav-file with the
+name of the event in the Mines-Perfect-directory:</p>
+
+<table width="340" border="1" cellpadding="4" cellspacing="0" summary="Sound"
+align="center">
+<thead>
+
+<tr valign="TOP">
+<th>Event</th>
+<th>Wave-File</th>
+</tr>
+
+</thead>
+<tbody>
+
+<tr align="center">
+<td>New game</td>
+<td>new.wav</td>
+</tr>
+
+<tr align="center">
+<td>Open a cell</td>
+<td>open.wav</td>
+</tr>
+
+<tr align="center">
+<td>Flag a cell</td>
+<td>flag.wav</td>
+</tr>
+
+<tr align="center">
+<td>Dead-end-Situation reach (higher priority over open or flag)</td>
+<td>deadend.wav</td>
+</tr>
+
+<tr align="center">
+<td>Game won</td>
+<td>won.wav</td>
+</tr>
+
+<tr align="center">
+<td>Game lost</td>
+<td>lost.wav</td>
+</tr>
+
+</tbody>
+</table>
+
+<a name="contact"></a>
+
+<h3>Contact</h3>
+
+<p>email: <a href="mailto:mail@czeppi.de">mail@czeppi.de</a></p>
+<p>homepage: <a href="http://www.czeppi.de">www.czeppi.de</a></p>
+
+</body>
+</html>
+

@@ -1,0 +1,298 @@
+Version 1.4.0
+-------------
+
+- Bug019: ShowBestTimesDlg: Ist Rekord versendungsfähig und wird der Show-Button
+          angeklickt => was_send == true
+
+- Imp014: ShowBestTimesDlg: Falls keine Zeit eingetragen ist, wird der
+          Reset-Button disabled (Für Show-Button leider nicht so leicht)
+
+- Bug018: Undo macht völligen Unsinn bei Zusatzboards
+
+- Imp013: Boards '.' -> '.\boards'
+
+- Imp012: Hintergrundfarbe für NT und W2000 unterschiedlich
+
+- Imp011: LogException nicht als unknown exception.
+
+- Imp010: F2 -> ctrl-n
+
+- Bug016: ShowMines auf on, new Game, irgendwas, undo all => Exception
+          - Es wird kein start_timer gesetzt, beim play wird aber einer erwartet
+          - Lösung: glob::show_mines -> Options::show_mines
+
+- Imp009: mine32.ico wird nicht mehr zur Laufzeit benötigt (mine32.xpm)
+          (mine32.ico wird für mineperf.exe gebraucht)
+
+- Bug015: Glob::log_on = false => auto.log wird trotzdem erzeugt
+
+- Bug   : Abspeichern eines Verlorenen Spiels und Laden desselben, hat zur
+          Folge, dass offene Felder nicht gemalt werden.
+          (Tritt nicht mehr auf)
+
+- Bug014: Rekord ohne Feldöffnen
+
+- Bug009: ASSERT beim Abspielen einer *.log-Datei mit 'hint'.
+          (nichts getan, tritt aber nicht mehr auf)
+
+- Bug013: Menüpunkt Solve all: Häkchen bleiben stehen
+
+- Bug012: Absturz bei 2x Best Times (Nur W2000 nicht bei W9x oder NT)
+          Tritt bei V140 nicht mehr auf (keine Bearbeitung)
+
+- Fea004: Show Mines
+
+- Imp   : _VARIANT_ (in Projektfiles)
+
+- Imp   : Selfdefined-Modus -> Time = 999
+
+- Bug011: Flaggen können nicht mehr entfernt werden
+
+- Fea003: Senden eines Bug-reports
+
+- Imp008: smilie -> smiley
+
+- Bug010: Verlorenes Spiel laden => Feld wird nicht aktualisiert.
+
+- Imp007: throw Exception -> ASSERT
+
+- Imp006: Im User-defined-Level laeuft die Uhr nicht mehr mit.
+
+- Bug008: MainWin wird beim Programmstart nicht an letzter Stelle wieder angezeigt.
+
+- Imp005: rand-Funktion selberschreiben
+          - Bestimmung der Startsequenz zufaelliger (nicht mehr mit clock())
+
+- Imp004: guestbook.php legt Daten tabellenförmig ab.
+
+- Fea002: Senden eines Hiscore-Eintrages
+          - Sekunden -> Millisekunden
+          - Neuer HiScore: Uservorschlag: Letzter global, nicht letzter des akt. Levels
+            (Dafür Datum in Ini-Datei)
+          - Username + Zusatzkennung (Dafür Userliste in Ini-Datei)
+
+- Imp003: Quellen fuer Visual-C++ uebersetzbar gemacht
+
+- Bug007: Falsche Flagge + oeffnen auf offenem Feld => Absturz
+
+- Imp002: Ctrl-Klassen + verzoegertes Zeichnen
+
+- Fea001: Gaestebuch auf Homepage eingerichtet
+
+- Imp001: Verzoegertes zeichnen
+          - Alle Controls zeichnen sich und ihre Kinder selber.
+          - Loeschen eines Controls hat Loeschung aller Kinder zur Folge.
+          - Basisklasse fuer alle Controls
+
+
+Version 1.3.0:
+--------------
+
+- Src23:
+  - Bug005: Murphy's Law wird nicht angewendet.
+  - Bug004: Spiel zeigt Sackgasse an, obwohl es die inneren geschlossenen Zellen keine
+            Mienen mehr enhalten koennen.
+  - Bug003: Absturz
+  - wxwin: Selfdefined-Dlg: keine Tiefe
+  - wxwin: neuer Highscore, Cancle => Highscore wird ohne Namen eingetragen
+  - Authentic(board) -> Logfile
+
+- Src23 oder Src22
+  - Beim Laden Logbook::clock0 korrigieren
+  - Beim Laden wird anscheinend das akt. Verzeichnis verstellt
+    -> mineperf.ini und auto.log im falschen Verzeichnis
+
+- Src22:
+  - Logbook: undo/redo:
+    - ueberspringen von invalid logs
+    - s+c+z ueber invalid log -> Fehler
+    - Beim letztmoeglichem Redo invalid ueberspringen
+  - chksum fuer boards (bisher nur dummy)
+  - Start-Timer-Log
+  - Certified-Boards: (Ini-Datei, Board, NewRecordDlg, BoardType)
+  - Flackern entfernt: boardview: beim Zellenoeffnen
+                       game: beim Aufbau (neuer Parameter: width_draw)
+  - Deadend-Sound
+
+- Src21:
+  - Bug001: Stillstand beim Laden einer ungueltigen Log-Datei
+            -> logbook.cpp/h, api.cpp/h, game.cpp
+
+  - Absturz bei trace_level == 2
+    -> eqs.cpp, board.cpp
+
+  - Gruppen werden ev. nicht richtig gebildet (offen)
+     EQS::findOneSolution/findMoves3
+
+  - Log-Datei mit Version, GUI und Boardnr -> name,
+  - Ini-Datei mit Version
+  - namespace 'Glob' fuer globale Var. in game.cpp eingefuehrt
+
+- Src20:
+  - Checksum
+  - Bug002: Murphys-Law funktioniert nicht richtig
+
+- Src19: Sound
+- Src18: Dialoge fertig, Board-Menu
+- Src17: neues Timer-Konzept
+- Src16: Anpassungen fuer Linux (lauffaehig, aber noch mit Fehlern)
+- Src15: Abstrakte-Schnittstellenklasse fuer C++-Builder5
+- Src14: Abstrakte-Schnittstellenklasse fuer Sound und Timer
+- Src13: Bitmap: Abstrakte-Schnittstellenklasse fertig
+- Src12: Bevel + Frame-Window gehen jetzt
+
+- unzugeordnet:
+
+  - timer mit uclock synchronisieren?
+    - game sollte nicht Timer::setNum(n: 0 < n && n < 999) aufrufen
+    - Timer::start und Timer::stop sollten verwendet werden
+
+  - auto.log wurde nicht im Play-Modus geschrieben (OOT)
+
+  - Exception beim laden von err100.log
+    - BOARD::act(): max_stage wurde runtergesetzt (geht (noch) nicht im Play-Modus)
+    - logbook_bck war unsinn (dadurch setNextLog wirkungslos)
+
+  - Laden einer leeren (keine dyn. Daten) *.log-Datei -> Exception:
+    'play-index zu gross'
+
+  - Beide Maustasten gedrueckt -> Erst Feld markiert, dann Nachbarn angezeigt
+
+  - Absturz bei Grid-3d 5x5x5 mit 99 Minen
+
+  - Beim neuem Spiel werden keine neuen Wholes angezeigt,
+    intern aber anscheinend berechnet, da das Laden und Speichern
+    nicht dann nicht mehr klappt.
+
+  - Falls Spiel von Autosolve geloest wurde, werden
+    die verminten, aber nicht geflaggten Zellen nicht als geflaggt gezeichnet.
+
+  - auto_solve_stage = 1
+    manchmal werden verminte Zellen offen gezeichnet
+
+  - api.h/.cpp
+
+      MPOINT operator+ (const MPOINT& a, const MPOINT b);
+      /*
+      {
+        MPOINT r = a;
+        MPOINT r = a;
+    -   return r += a;
+    +   return r += b;
+      }
+      */
+
+  - game.cpp:
+    OPTIONS::OPTIONS() wird 3x aufgerufen ?! (keine *.ini-Datei)
+
+  - triangle14: Rand der Zellen sieht komisch aus
+
+  - Gross/Kleinschreibung im Boardnamen (Datei <-> *.ini) unterschiedlich
+    -> ev. Absturz
+    Gross/Kleinschreibung sollte aus Datei (aus welcher?) uebernommen werden.
+
+- Umstellung auf wxWindows
+
+- noch fuer Borland
+  - Startup-Modus bei Triangle manchmal etwas langsam
+    (BOARD::getRandCell Bevorzugung von Randzellen mit wenigen
+     'clean'-Nachbarzellen)
+
+  - Fehler: Bis die Zeit von 0 auf 1 umspringt vergehen 0 - 999 ms.
+  - neu: Undo/Redo
+  - neu: Laden/Speichern
+
+
+Version 1.2.1:
+--------------
+
+- Fehler behoben: Voraus.: murphys_law = on
+                  Wurde eine Zelle geflaggt die nicht vermint war
+                  -> Exception: BOARD::chkMines(): open Cell is mined
+                  (log_squ4.txt - log_squ5.txt)
+
+Version 1.2.0:
+--------------
+
+- neu: mit Soundunterstützung
+
+- neu: Lückenlose Kontrolle beim Minenumlegen
+
+- geändert: Default-Modus ist Lucky (nicht mehr Original)
+
+- Fehler behoben: - - -  ->  wird '?'-Zelle geöffnet, dann wird die Mine auf diese
+                  - 1 ?      Zelle gelegt (richtig) -> Spiel verloren (richtig), aber
+                  - 1 !*     kein Kreuz bei '!*'-Zelle
+                  - 2 -
+
+- Fehler behoben: Exception: EQS::findOneSolution: mines_diff != 0
+
+- Fehler behoben: Die log.txt-Datei wird zu spät geschrieben und so fehlt
+                  im Falle einer Ausnahme u.U. der letzte Schritt.
+
+Version 1.1.2:
+--------------
+
+- Fehler behoben: 8 x 8 x 30, Start-Up, seq=938(939?),
+                  -> Endlosschleife vor dem 1. Klick.
+                  getRandHint(): liefert verminte Zelle mit num_mines==0
+
+Version 1.1.1:
+--------------
+
+- Fehler behoben: Moduswechsel (Original->Startup, Status==BEFORE)
+                  -> Zeit startet nicht
+
+Version 1.1.0:
+--------------
+
+- neu: Lucky-Modus, Murphy's Law, log.txt-Datei, randomize
+
+- Fehler behoben: Aenderung der Windowsschriften fuer Titel und Menu
+                  -> Groesse des Fensters stimmte nicht mehr.
+
+Version 1.0.2:
+--------------
+
+- Intern: BOARD Unterscheidung nach EQS-real und EQS-visible
+
+- Modus kann waehrend eines Spiels gewechselt werden
+
+- Tasten umbelegt: F2 -> F5, Ctrl + F1-3 -> F1-3
+
+- Smili wird nicht neu gezeichnet, wenn er sich nicht geaendert hat
+  (z.B. rechte Maustaste und gleiche Stufe)
+
+- Fehler behoben:
+  Autosolve, Spiel gleich zu Beginn geloest
+  -> Es blieben manchmal unmarkierte, geschlossene Zellen zurck
+
+- Fehler behoben: Autosolve (Hints), Spiel gewonnen
+                  -> Anzahl Restminen war manchmal falsch
+
+- BOARD::getRandCell verbessert (korrigiert?)
+
+- Keine Bitmap-Dateien mehr noetig
+
+- Selfdefined-Dialog: Abbrechen -> kein neues Spiel
+
+
+Version 1.0.1:
+--------------
+
+- Neues Loesungsverfahren (EQS statt LEQS und GEQS) integriert.
+  Findet nun auch Zuege, die nur mit Hilfe der Gesamtminenzahl gefunden werden
+  koennen.
+
+- Fehler behoben:
+  Spiel gewonnen, nicht alle Zellen markiert -> restlichen Zellen werden zwar
+  markiert, aber Anzahl der Minen wird nicht auf 0 gesetzt.
+
+- Berechnung der Stagenr. geaendert. (Es bleich immer noch ein Konzeptfehler)
+
+
+Version 1.0.0:
+--------------
+
+- Mit eingeschraenkten Optionen erstellt (kein Murphy's Law, kein Lucky-Modus,
+  Stagenummerberechnung bei falschgesetzten Flaggen verbesserungsfaehig).

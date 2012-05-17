@@ -1,0 +1,66 @@
+<levels>  // height  width  num-mines num-wholes
+6  6  10   
+11 11 35
+11 22 80
+
+<frame-types> // x0  y0  width  height
+0  50  22 38  // 0 Ecken aufrecht
+50 50  38 22  // 1 Ecken liegend
+25 50  22 38  // 2 Seiten aufrecht
+50 75  38 22  // 3 Seiten liegend
+
+<cell-types>  // x0  y0  width  height  symbol-dx  symbol-dy
+              // frame-type  dx  dy
+0  0   16 32   7 15   0 -3 -3   2 -3 -3
+0 33   32 16   15 7   1 -3 -3   3 -3 -3
+
+
+<cell-patterns>  // row  col  cell-type  dx  dy  cond.
+                 // adj-pattern  adj-tile-hor  adj-tile-vert
+
+0 0   0   0  0    777   7 -1 -1   5 -1 0    
+                        2  0 -1             1 0 0 
+                        3  0 -1 
+                        7  0 -1   4  0 0    
+
+
+0 0   0   16  0   777             5 -1 0   6 -1 0  
+                        0  0  0            2  0 0 
+                                           3  0 0 
+                                  4  0 0   6  0 0 
+
+
+0 1   1   32  0   777   5 -1 0   6 -1 0   7 -1 0   5 -1 1 
+                        1  0 0                     0  0 1 
+                                       3 0 0    
+
+
+0 1   1   32 16   777               2 0 0    
+                        1 0 0                   0 0 1 
+                        4 0 0   6 0 0   7 0 0   4 0 1
+
+
+1 0   1    0 32   777   3 0 -1   0 0 0   1 0 0   3 0 0
+                        7 0 -1                   6 0 0
+                                    5 0 0
+
+ 
+1 0   1    0 48   777                4 0 0
+                        7 0 -1                   6 0 0
+                        2 1 -1   0 1 0   1 1 0   2 1 0
+
+
+1 1   0   32 32   777   1 0 0   3 0 0
+                        4 0 0           7 0 0 
+                        5 0 0
+                        1 1 0   2 1 0 
+
+
+1 1   0   48 32   777           3 0 0   0 0 1
+                        6 0 0           4 0 1
+                                        5 0 1
+                                2 1 0   0 1 1
+
+
+<tile>  // hor-dx  hor-dy  vert-dx  vert-dy
+64 0   0 64

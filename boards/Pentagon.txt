@@ -1,0 +1,35 @@
+<levels>  // height  width  num-mines
+11 11 10  // beginner
+23 23 40  // intermediate
+23 43 99  // expert
+
+<frame-types>  // x0  y0  width  height
+37  102  35 28  // 0 Ecken Cell-Typ 0
+37  131  35 28  // 1 Ecken Cell-Typ 1
+111 124  28 35  // 2 Ecken Cell-Typ 2
+140 124  28 35  // 3 Ecken Cell-Typ 3
+1   102  35 28  // 4 Seiten Cell-Typ 0
+1   131  35 28  // 5 Seiten Cell-Typ 1
+111 88   28 35  // 6 Seiten Cell-Typ 2
+140 88   28 35  // 7 Seiten Cell-Typ 3
+
+<cell-types>  // x0  y0  width  height  symbol-dx  symbol-dy
+              // frame-type  dx  dy
+0  0   28 21   13 10   0 -4 -4   4 -4 -4  // 0 Spitze oben
+0 22   28 21   13  9   1 -4 -3   5 -4 -3  // 1 Spitee unten
+0 44   21 28   10 13   2 -4 -4   6 -4 -4  // 2 Spitze links
+0 72   21 28    9 13   3 -3 -4   7 -3 -4  // 3 Spitze rechts
+
+<cell-patterns>  // row  col  cell-type  dx  dy  cond.
+                 // adj-pattern  adj-tile-hor  adj-tile-vert
+0 3   1   42  0   777   6 -1 1   2 0 1   1 0 1   4 0 0   2 0  0   7 -1  0   5 -1  0
+1 0   3    0 14   777   6 -1 0   2 0 0   3 0 0   6 0 0   5 0 -1   4  0 -1   0  0 -1
+1 1   0   14  7   777   7 -1 0   0 0 0   4 0 0   3 0 0   1 0  0   0  0 -1   6 -1  0
+1 1   1   14 28   777   4  0 0   5 0 0   7 0 0   6 0 0   5 0 -1   1  0  0   2  0  0
+1 2   2   35 14   777   0  0 0   1 0 1   5 0 0   7 0 0   3 0  0   2  0  0   7 -1  0
+2 3   0   42 35   777   1  0 1   3 0 1   6 0 1   0 1 0   7 0  0   3  0  0   4  0  0
+3 1   2    7 42   777   3  0 0   7 0 0   2 1 0   1 1 0   0 1 -1   5  0 -1   1  0  0
+3 1   3   28 42   777   4  0 0   5 0 0   0 1 0   4 1 0   2 1  0   6  0  0   3  0  0
+
+<tile>  // hor-dx  hor-dy  vert-dx  vert-dy
+56 0   0 56

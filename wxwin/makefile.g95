@@ -1,0 +1,65 @@
+# Project: Mines-Perfect
+
+CC     = c++
+
+CFLAGS = -DLINUX "-DwxINSTALL_PREFIX=\"/usr/local\"" -D__WXGTK__ -DGTK_NO_CHECK_CASTS -D_REENTRANT \
+         -MMD -O2 -Wall \
+	 -I. -I/usr/X11R6/lib/wx/include/gtk-2.2 \
+	 -I/usr/include/gtk-1.2 -I/usr/include/glib-1.2 -I/usr/lib/glib/include -I/usr/X11R6/include
+
+OBJECTS = api.o app.o dialogs.o \
+          ../game.o ../brdview.o ../smiley.o ../board.o ../eqs.o ../lcd.o \
+          ../utils.o ../logbook.o ../perfana.o ../options.o
+
+WXSHLIB = /usr/X11R6/lib/libwx_gtk-2.2.so.6.2.6
+
+LIBS = $(WXSHLIB) -L/usr/lib -L/usr/X11R6/lib \
+       -lgtk -lgdk -rdynamic -lgmodule -lgthread -lglib -lpthread -ldl  \
+       -lXi -lXext -lX11 -lm  -lpng -ljpeg -ltiff  -ldl -lpthread -lz -lm
+
+
+mineperf: $(OBJECTS) $(WXSHLIB)
+	$(CC) -o mineperf $(OBJECTS) $(LIBS)
+
+api.o: api.cpp
+	$(CC) -c api.cpp -o api.o $(CFLAGS)
+
+dialogs.o: dialogs.cpp
+	$(CC) -c dialogs.cpp -o dialogs.o $(CFLAGS)
+
+app.o: app.cpp
+	$(CC) -c app.cpp -o app.o $(CFLAGS)
+
+../game.o: ../game.cpp
+	$(CC) -c ../game.cpp -o ../game.o $(CFLAGS)
+
+../brdview.o: ../brdview.cpp
+	$(CC) -c ../brdview.cpp -o ../brdview.o $(CFLAGS)
+
+../smiley.o: ../smiley.cpp
+	$(CC) -c ../smiley.cpp -o ../smiley.o $(CFLAGS)
+
+../board.o: ../board.cpp
+	$(CC) -c ../board.cpp -o ../board.o $(CFLAGS)
+
+../eqs.o: ../eqs.cpp
+	$(CC) -c ../eqs.cpp -o ../eqs.o $(CFLAGS)
+
+../lcd.o: ../lcd.cpp
+	$(CC) -c ../lcd.cpp -o ../lcd.o $(CFLAGS)
+
+../utils.o: ../utils.cpp
+	$(CC) -c ../utils.cpp -o ../utils.o $(CFLAGS)
+
+../logbook.o: ../logbook.cpp
+	$(CC) -c ../logbook.cpp -o ../logbook.o $(CFLAGS)
+
+../perfana.o: ../perfana.cpp
+	$(CC) -c ../perfana.cpp -o ../perfana.o $(CFLAGS)
+
+../options.o: ../options.cpp
+	$(CC) -c ../options.cpp -o ../options.o $(CFLAGS)
+
+
+
+

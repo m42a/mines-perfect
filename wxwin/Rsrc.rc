@@ -1,0 +1,4 @@
+mineperf ICON "mine32.ico"
+#include <wx/msw/wx.rc>
+
+

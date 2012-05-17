@@ -1,0 +1,610 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/transitional.dtd">
+<html xmlns="http://www.w3.org/TR/xhtml1">
+<head>
+<meta content="text/html; charset=iso-8859-1" />
+<title>Help</title>
+</head>
+<body>
+<basefont face="Comic Sans MS" />
+
+<table width="100%" summary="">
+<tr>
+<td>
+<h3>Inhalt</h3>
+</td>
+<td align="right"><a href="help.html"><img src="flag_en.bmp" alt="" /></a></td>
+</tr>
+</table>
+
+<ol>
+<li><a href="#newbies">F&uuml;r Neueinsteiger</a></li>
+
+<li><a href="#mousehandling">&Ouml;ffnen und Markieren von Feldern</a></li>
+
+<li><a href="#stages">Die drei Schwierigkeitsstufen</a></li>
+
+<li><a href="#modi">Die verschiedenen Modi des Spiels</a></li>
+
+<li><a href="#menus">Men&uuml;s</a>
+
+<ul>
+<li><a href="#file-menu">File-Men&uuml;</a></li>
+
+<li><a href="#board-menu">Board-Men&uuml;</a></li>
+
+<li><a href="#help-menu">Help-Men&uuml;</a></li>
+</ul>
+</li>
+
+<li><a href="#sound">Sound</a></li>
+
+<li><a href="#sound">Kontakt</a></li>
+</ol>
+
+<a name="newbies"></a>
+
+<h3>F&uuml;r Neueinsteiger</h3>
+
+<p>Auf dem Spielfeld ist eine gewisse Anzahl von Minen versteckt, wenn man ein
+solches Feld &ouml;ffnet ist das Spiel vorbei. Ziel ist es alle unverminten
+Felder so schnell wie m&ouml;glich zu &ouml;ffnen. Offene Felder geben einen
+Hinweis, wie viele der Nachbarzellen eine Mine enthalten. Durch Auswertung der
+offenen Felder k&ouml;nnen nun Schlu&szlig;folgerungen &uuml;ber andere Felder
+getroffen werden.</p>
+
+<a name="mousehandling"></a>
+
+<h3>&Ouml;ffnen und Markieren von Feldern</h3>
+
+<p>Die linke Maustaste ist zum &ouml;ffnen, die rechte zum markieren von
+Feldern. Falls man auf ein geschlossenes Feld klickt, richtet sich die Aktion
+auf dieses Feld, ein Klick auf ein offenes Feld richtet sie auf alle
+unge&ouml;ffneten und nicht markierten Nachbarfelder (<a name=
+"quickopen"></a>auch <b>schnelles &Ouml;ffnen oder Markieren</b> genannt).
+Allerdings funktioniert das nur, falls genug Nachbarfelder offen bzw. markiert
+sind, sonst passiert nichts.</p>
+
+<table border="1" cellpadding="10" cellspacing="0" summary="" align="center"
+align="center">
+<thead>
+<tr align="center">
+<th>Vorher</th>
+<th>Aktion</th>
+<th>Nachher</th>
+<th>Kommentar</th>
+</tr>
+</thead>
+
+<tbody>
+<tr align="center">
+<td><img src="mouse_cb.bmp" alt="" /></td>
+<td><img src="mouse_l.bmp" alt="" /></td>
+<td><img src="mouse_cla.bmp" alt="" /></td>
+<td>&ouml;ffnet ein Feld</td>
+</tr>
+
+<tr align="center">
+<td><img src="mouse_cb.bmp" alt="" /></td>
+<td><img src="mouse_r.bmp" alt="" /></td>
+<td><img src="mouse_cra.bmp" alt="" /></td>
+<td>Markierung eines Feldes</td>
+</tr>
+
+<tr align="center">
+<td><img src="mouse_olb.bmp" alt="" /></td>
+<td><img src="mouse_l.bmp" alt="" /></td>
+<td><img src="mouse_ola.bmp" alt="" /></td>
+<td>Die eine Mine ist bereits gefunden -&gt; alle anderen k&ouml;nnen
+ge&ouml;ffnet werden</td>
+</tr>
+
+<tr align="center">
+<td><img src="mouse_orb.bmp" alt="" /></td>
+<td><img src="mouse_r.bmp" alt="" /></td>
+<td><img src="mouse_ora.bmp" alt="" /></td>
+<td>Alle bis auf zwei Felder sind ge&ouml;ffnet -&gt; restlichen Felder
+k&ouml;nnen markiert werden</td>
+</tr>
+</tbody>
+</table>
+
+<a name="stages"></a>
+
+<h3>Die drei Schwierigkeitsstufen</h3>
+
+<p>Die Schwierigkeit ein neues Feld zu finden, da&szlig; entweder ge&ouml;ffnet
+oder markiert werden kann, kann sehr stark variieren. Mines-Perfect
+unterscheide dabei drei Schwierigkeitsstufen. Bei der ersten Stufe kann man mit
+Hilfe von nur einem offenem Feld weiterkommen. Existiert ein solch offenes
+Feld, so kann mit diesem ein <a href="#quickopen">schnelles
+Markieren/&Ouml;ffnen</a> der Nachbarfelder durchgef&uuml;hrt werden. Bei der
+zweiten Stufe muss ich zwei, bei der dritten Stufe muss ich drei oder mehr
+offene Felder miteinander kombinieren. Der einfachste Zug auf dem Spielfeld
+ergibt dann die Gesamtschwierigkeitsstufe. Diese wird durch den Smiley
+angezeigt.</p>
+
+<table border="1" cellpadding="4" cellspacing="0" summary="">
+<col align="center" />
+<col align="center" />
+<col align="center" />
+<col />
+<thead>
+<tr valign="TOP">
+<th>Stufe</th>
+<th>Smiley</th>
+<th>Beispiel</th>
+<th>Erkl&auml;rung</th>
+</tr>
+</thead>
+
+<tbody>
+<tr valign="TOP">
+<td>1</td>
+<td><img src="smiley1.bmp" alt="" /></td>
+<td><img src="stage1.bmp" alt="" /></td>
+<td>
+<p>Der Zustand eines verdeckten Feldes kann durch die Auswertung eines
+einzelnen offenen Feldes bestimmt werden.</p>
+
+<p>In dem Beispiel mu&szlig; das verdeckte Feld eine Mine enthalten, da es das
+einzige unge&ouml;ffnete Nachbarfeld ist, in dem die eine Mine des umkreisten
+Feldes noch liegen kann.</p>
+</td>
+</tr>
+
+<tr valign="TOP">
+<td>2</td>
+<td><img src="smiley2.bmp" alt="" /></td>
+<td><img src="stage2.bmp" alt="" /></td>
+<td>
+<p>Der Zustand eines verdeckten Feldes kann durch die Auswertung von zwei
+offenen Feldern bestimmt werden.</p>
+
+<p>In dem Beispiel mu&szlig; das dritte verdeckte Feld von links eine Mine
+enthalten, da in den drei linken Feldern zusammen zwei und in den beiden ganz
+links eine Mine liegen muss.</p>
+</td>
+</tr>
+
+<tr valign="TOP">
+<td>3</td>
+<td><img src="smiley3.bmp" alt="" /></td>
+<td><img src="stage3.bmp" alt="" /></td>
+<td>
+<p>Es werden drei oder mehr offene Felder f&uuml;r die Bestimmung eines
+Feldzustandes ben&ouml;tigt.</p>
+
+<p>In dem Beispiel kann das Feld rechts unten keine Mine enthalten, da in den
+f&uuml;nf verdeckten Feldern zwei Minen liegen, eine davon in den linken beiden
+und eine in den oberen beiden.</p>
+</td>
+</tr>
+
+<tr valign="TOP">
+<td>-</td>
+<td><img src="smiley0.bmp" alt="" /> <img src="smiley4.bmp" alt="" /></td>
+<td>-</td>
+<td>
+<p>Es ist keine Feldzustandsbestimmung mehr m&ouml;glich. Weiteres Verhalten
+h&auml;ngt vom <a href="#modi">Modus</a> ab. Der linke Smiley erscheint im
+Immun- und im Lucky-, der rechte im Original-Modus. Im Hint- oder Startup-Modus
+gibt es diese Situation gar nicht.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+<a name="modi"></a>
+
+<h3>Die verschiedenen Modi des Spiels</h3>
+
+<p>Der Kern des Programms enth&auml;lt einen hoch optimierten
+L&ouml;sungsalgorithmus, der jedes Spiel l&ouml;sen kann, falls es auch
+l&ouml;sbar ist. Des weiteren wird dieser Algorithmus dazu verwendet, um <b>
+Situationen in denen man nicht weiterkommen kann</b> zu erkennen und
+entsprechend zu reagieren. Mit dem Modus bestimmt man, was in einer solchen
+Situation passieren soll:</p>
+
+<ol>
+<li><a name="original-modus"></a>
+
+<p><b>Original-Modus:</b> Wie beim Original-Spiel passiert in einer solchen
+Situation gar nichts und man latscht ohne Warnung auf die Mine.</p>
+</li>
+
+<li><a name="hint-modus"></a>
+
+<p><b>Hint-Modus:</b> Das Programm &ouml;ffnet oder markiert ein Feld
+automatisch.</p>
+</li>
+
+<li><a name="immune-modus"></a>
+
+<p><b>Immune-Modus:</b> Der Spieler ist f&uuml;r den n&auml;chsten Schritt
+gesch&uuml;tzt, d.h. beim Betreten einer Mine geht das Spiel weiter.</p>
+</li>
+
+<li><a name="lucky-modus"></a>
+
+<p><b>Lucky-Modus:</b> Der Spieler wird im n&auml;chsten Schritt sehr viel
+'Gl&uuml;ck' haben und auf keine Mine treten. Das Programm hilft notfalls etwas
+nach und sortiert die Minen um (nat&uuml;rlich unter der Gew&auml;hrleistung
+der Konsistenz. Dieser Modus und die Begrenzung der <a href="#help-menu">max.
+Schwierigkeitsstufe</a> schliessen sich einander aus.).</p>
+</li>
+
+<li><a name="startup-modus"></a>
+
+<p><b>Startup-Modus:</b> Es werden vor Spielbeginn so viele Felder
+ge&ouml;ffnet und markiert, da&szlig; eine solche Situation gar nicht auftreten
+kann.</p>
+</li>
+</ol>
+
+<p>F&uuml;r welchen Modus sich der Spieler entscheidet bleibt seinem
+pers&ouml;nlichem Geschmack &uuml;berlasse. Es ist sogar m&ouml;glich den Modus
+in einem laufenden Spiel zu &auml;ndern, was aber nicht immer Sinn macht. Wird
+z.B. vom Startup- in den Hint-Modus gewechselt, wird es nie einen Hinweis
+geben.</p>
+
+<p>Es gibt noch eine Option die sich <a name="murphys-law"></a><b>Murphy's
+Law</b> nennt. Sie ist sozusagen das Gegenst&uuml;ck vom Lucky-Modus. Tritt der
+Spieler auf ein unvermintes Feld und es k&ouml;nnte theoretisch eine Mine
+darunter liegen, dann sorgt das Programm daf&uuml;r, da&szlig; das dann auch so
+ist.</p>
+
+<a name="menus"></a>
+
+<h3>Men&uuml;</h3>
+
+<a name="file-menu"></a>
+
+<h4>File-Men&uuml;</h4>
+
+<table border="0" cellpadding="3" cellspacing="2" bgcolor="#bfbfbf" summary="">
+<tr>
+<td bgcolor="#00007f"><font color="#ffffff">File</font></td>
+<td>Boards</td>
+<td>Help</td>
+</tr>
+</table>
+
+<table border="0" cellpadding="3" cellspacing="2" bgcolor="#ffffff" summary="">
+<col bgcolor="#bfbfbf" />
+<col bgcolor="#bfbfbf" />
+<col bgcolor="#ffffff" />
+<tr>
+<td>New</td>
+<td>Ctrl+N</td>
+<td>Neues Spiel beginnen.</td>
+</tr>
+
+<tr>
+<td>Open</td>
+<td>Ctrl+O</td>
+<td>Ein gespeichertes Spiel laden</td>
+</tr>
+
+<tr>
+<td>Save</td>
+<td>Ctrl+S</td>
+<td>Ein Spiel speichern</td>
+</tr>
+
+<tr>
+<td>Beginner</td>
+<td>.</td>
+<td>Einfaches Spiel</td>
+</tr>
+
+<tr>
+<td>Intermediate</td>
+<td>.</td>
+<td>Mittelschweres Spiel</td>
+</tr>
+
+<tr>
+<td>Expert</td>
+<td>.</td>
+<td>Schweres Spiel</td>
+</tr>
+
+<tr>
+<td>Selfdefined</td>
+<td>.</td>
+<td>Selbstdefiniertes Spiel</td>
+</tr>
+
+<tr>
+<td>Original</td>
+<td>.</td>
+<td><a href="#original-modus">Original-Modus</a> setzen.</td>
+</tr>
+
+<tr>
+<td>Hint</td>
+<td>.</td>
+<td><a href="#hint-modus">Hint-Modus</a> setzen.</td>
+</tr>
+
+<tr>
+<td>Immune</td>
+<td>.</td>
+<td><a href="#immune-modus">Immune-Modus</a> setzen.</td>
+</tr>
+
+<tr>
+<td>Lucky</td>
+<td>.</td>
+<td><a href="#lucky-modus">Lucky-Modus</a> setzen.</td>
+</tr>
+
+<tr>
+<td>Start up</td>
+<td>.</td>
+<td><a href="#startup-modus">Start-up-Modus</a> setzen.</td>
+</tr>
+
+<tr>
+<td>Murphy's Law</td>
+<td>.</td>
+<td>Schaltet <a href="#murphys-law">Murphy's Gesetz</a> ein oder aus.</td>
+</tr>
+
+<tr>
+<td>Best Times</td>
+<td>.</td>
+<td>Es werden die Bestzeiten angezeigt. Von hier aus k&ouml;nnen sie auch
+gel&ouml;scht oder in die globale Hiscoreliste eingetragen werden.</td>
+</tr>
+
+<tr>
+<td>Exit</td>
+<td>.</td>
+<td>Programmende.</td>
+</tr>
+</table>
+
+<a name="board-menu"></a>
+
+<h4>Board-Men&uuml;</h4>
+
+<table border="0" cellpadding="3" cellspacing="2" bgcolor="#bfbfbf" summary="">
+<tr>
+<td>File</td>
+<td bgcolor="#00007f"><font color="#ffffff">Boards</font></td>
+<td>Help</td>
+</tr>
+</table>
+
+<table border="0" cellpadding="3" cellspacing="2" bgcolor="#ffffff" summary="">
+<col bgcolor="#ffffff" />
+<col bgcolor="#bfbfbf" />
+<col bgcolor="#ffffff" />
+<tr>
+<td><font color="#ffffff">File</font></td>
+<td>Square</td>
+<td>Board mit Quadraten.</td>
+</tr>
+
+<tr>
+<td><font color="#ffffff">File</font></td>
+<td>Hexagon</td>
+<td>Board mit Sechsecken.</td>
+</tr>
+
+<tr>
+<td><font color="#ffffff">File</font></td>
+<td>Triangle</td>
+<td>Board mit Dreiecken.</td>
+</tr>
+
+<tr>
+<td><font color="#ffffff">File</font></td>
+<td>...</td>
+<td>und andere</td>
+</tr>
+</table>
+
+<a name="help-menu"></a>
+
+<h4>Help-Men&uuml;</h4>
+
+<table border="0" cellpadding="3" cellspacing="2" bgcolor="#bfbfbf" summary="">
+<tr>
+<td>File</td>
+<td>Boards</td>
+<td bgcolor="#00007f"><font color="#ffffff">Help</font></td>
+</tr>
+</table>
+
+<table border="0" cellpadding="3" cellspacing="2" bgcolor="#ffffff" summary="">
+<col bgcolor="#ffffff" />
+<col bgcolor="#ffffff" />
+<col bgcolor="#bfbfbf" />
+<col bgcolor="#bfbfbf" />
+<col bgcolor="#bfbfbf" />
+<col bgcolor="#ffffff" />
+<tr>
+<td><font color="#ffffff">File</font></td>
+<td><font color="#ffffff">Boards</font></td>
+<td>Hint</td>
+<td>.</td>
+<td>Ctrl+H</td>
+<td>Bei Stufe eins und zwei werden das oder die offenen Felder angezeigt, mit
+denen R&uuml;ckschl&uuml;sse auf geschlossene Felder gezogen werden
+k&ouml;nnen. Bei Stufe drei werden geschlossene Felder angezeigt, die
+ge&ouml;ffnet oder markiert werden k&ouml;nnen.</td>
+</tr>
+
+<tr>
+<td><font color="#ffffff">File</font></td>
+<td><font color="#ffffff">Boards</font></td>
+<td>SolveOne</td>
+<td>.</td>
+<td>Ctrl+L</td>
+<td>&Ouml;ffnet oder markiert ein Feld.</td>
+</tr>
+
+<tr>
+<td><font color="#ffffff">File</font></td>
+<td><font color="#ffffff">Boards</font></td>
+<td>SolveAll</td>
+<td>Stage1,2,3</td>
+<td>Ctrl+1,2,3</td>
+<td>L&ouml;st alle Felder bis einschlie&szlig;lich der angegebenen <a href=
+"#stages">Schwierigkeitsstufe</a>.</td>
+</tr>
+
+<tr>
+<td><font color="#ffffff">File</font></td>
+<td><font color="#ffffff">Boards</font></td>
+<td>SolveAuto</td>
+<td>Stage0,1,2,3</td>
+<td>.</td>
+<td>L&ouml;st alle Felder bis einschlie&szlig;lich der angegebenen <a href=
+"#stages">Schwierigkeitsstufe</a> nach jeder Aktion automatisch.</td>
+</tr>
+
+<tr>
+<td><font color="#ffffff">File</font></td>
+<td><font color="#ffffff">Boards</font></td>
+<td>MaxStage</td>
+<td>Stage1,2,3</td>
+<td>.</td>
+<td>Die max. <a href="#stages">Schwierigkeitsstufe</a> kann hier runter gesetzt
+werden. Hilfe durch den Modus wird dadurch fr&uuml;her gew&auml;hrt (diese
+Einstellung und der <a href="#lucky-modus">Lucky-Modus</a> schlie&szlig;en sich
+einander aus).</td>
+</tr>
+
+<tr>
+<td><font color="#ffffff">File</font></td>
+<td><font color="#ffffff">Boards</font></td>
+<td>Show Mines</td>
+<td>.</td>
+<td>.</td>
+<td>Macht Minen sichtbar bzw. unsichtbar.</td>
+</tr>
+
+<tr>
+<td><font color="#ffffff">File</font></td>
+<td><font color="#ffffff">Boards</font></td>
+<td>Undo</td>
+<td>.</td>
+<td>Ctrl+Z</td>
+<td>Der letzte Schritt wird r&uuml;ckg&auml;ngig gemacht. Das kann etwas Zeit
+in Anspruch nehmen, da das komplette Spiel noch mal durchgespielt wird.</td>
+</tr>
+
+<tr>
+<td><font color="#ffffff">File</font></td>
+<td><font color="#ffffff">Boards</font></td>
+<td>Redo</td>
+<td>.</td>
+<td>Ctrl+Y</td>
+<td>Den letzte Schritt wiederholen.</td>
+</tr>
+
+<tr>
+<td><font color="#ffffff">File</font></td>
+<td><font color="#ffffff">Boards</font></td>
+<td>Undo All</td>
+<td>.</td>
+<td>Shift+Ctrl+Z</td>
+<td>Macht alle Schritte r&uuml;ckg&auml;ngig bis zum Start des Spiels (ist
+dadurch schneller als Undo).</td>
+</tr>
+
+<tr>
+<td><font color="#ffffff">File</font></td>
+<td><font color="#ffffff">Boards</font></td>
+<td>Content</td>
+<td>.</td>
+<td>.</td>
+<td>Zeigt diese Hilfe an.</td>
+</tr>
+
+<tr>
+<td><font color="#ffffff">File</font></td>
+<td><font color="#ffffff">Boards</font></td>
+<td>Homepage</td>
+<td>.</td>
+<td>.</td>
+<td>&Ouml;ffnet www.czeppi.de</td>
+</tr>
+
+<tr>
+<td><font color="#ffffff">File</font></td>
+<td><font color="#ffffff">Boards</font></td>
+<td>About</td>
+<td>.</td>
+<td>.</td>
+<td>Kurzinfo &uuml;ber das Spiel.</td>
+</tr>
+</table>
+
+<a name="sound"></a>
+
+<h3>Sound</h3>
+
+<p>Falls man bestimmte Ereignisse mit Ger&auml;uschen unterlegen m&ouml;chte,
+kann man sich *.wav-Dateien mit einem bestimmtem Namen ins
+Mines-Perfect-Verzeichnis kopieren. Diese werden dann automatisch
+ausgef&uuml;hrt.</p>
+
+<table width="340" border="1" cellpadding="4" cellspacing="0" summary="Sound"
+align="center">
+<thead>
+<tr valign="TOP">
+<th>Ereignis</th>
+<th>Wave-Datei</th>
+</tr>
+</thead>
+
+<tbody>
+<tr align="center">
+<td>Neues Spiel</td>
+<td>new.wav</td>
+</tr>
+
+<tr align="center">
+<td>Feld aufgedeckt</td>
+<td>open.wav</td>
+</tr>
+
+<tr align="center">
+<td>Feld markiert</td>
+<td>flag.wav</td>
+</tr>
+
+<tr align="center">
+<td>Sackgassen-Situation erreicht (h&ouml;here Priorit&auml;t als &Ouml;ffnen
+oder Markieren)</td>
+<td>deadend.wav</td>
+</tr>
+
+<tr align="center">
+<td>Spiel gewonnen</td>
+<td>won.wav</td>
+</tr>
+
+<tr align="center">
+<td>Spiel verloren</td>
+<td>lost.wav</td>
+</tr>
+</tbody>
+</table>
+
+<a name="contact"></a>
+
+<h3>Kontakt</h3>
+
+<p>email: <a href="mailto:mail@czeppi.de">mail@czeppi.de</a></p>
+<p>homepage: <a href="http://www.czeppi.de">www.czeppi.de</a></p>
+
+</body>
+</html>
+
