@@ -109,7 +109,8 @@ void SetBitmapBackgroundColour()
   wxImage img1(1,1);
   img1.SetRGB (0, 0, col.Red(), col.Green(), col.Blue());
 
-  wxImage img2 (img1.ConvertToBitmap());
+  //Convert to a Bitmap and back to ensure the color we use is representable
+  wxImage img2=wxBitmap(img1).ConvertToImage();
 
   red   = img2.GetRed(0,0);  
   green = img2.GetGreen(0,0);
@@ -145,7 +146,7 @@ void LoadImage (wxImage& image, const string& fname, bool transparent)
 //------------------------------------------------------------------------------
 //  als Transparentfarbe wird das Pixel links unten genommen
 {
-  ASSERT (image.LoadFile (fname.c_str(), wxBITMAP_TYPE_BMP));
+  ASSERT (image.LoadFile (wxString(fname.c_str(), wxConvUTF8), wxBITMAP_TYPE_BMP));
 
   wxColour win_bg_col = main_win->GetBackgroundColour();
   wxColour bg_col (*wxLIGHT_GREY);
@@ -164,7 +165,7 @@ void SetImage (wxImage& image, char* xpm[], bool transparent)
 {
   ASSERT (xpm != 0);
 
-  image = wxImage(wxBitmap(xpm));
+  image = wxBitmap(xpm).ConvertToImage();
 
   // replace
   wxColour win_bg_col = main_win->GetBackgroundColour();
@@ -301,13 +302,12 @@ BitmapImpl::BitmapImpl (const string& kind, const string& spec)
   {
     string  fname = string("./boards/") + spec + ".bmp";
 
-    if      (wxFile::Exists (fname.c_str()))  LoadImage (image, fname, true);
-    else if (spec == "Square")                image = square_image;
+         if (spec == "Square")                image = square_image;
     else if (spec == "Triangle")              image = triangle_image;
     else if (spec == "Hexagon")               image = hexagon_image;
     else if (spec == "3d-Grid")               image = grid3d_image;
-    else      
-      ASSERT (false);
+    //This will ASSERT if it fails to load the file
+    else                                      LoadImage (image, fname, true);
 
     bitmap = image.ConvertToBitmap();
     return;
