@@ -28,10 +28,7 @@ namespace MinesPerfect
 
 #include <iterator>
 #include <iomanip>
-
-#ifdef VISUAL_CPP
-  #include <math.h> // visual studio
-#endif
+#include <cmath>
 
 using namespace std;
 
