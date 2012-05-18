@@ -274,6 +274,7 @@ void GameCtrl::actWin(void) // eh. actBoard
 
   if (m_board->getState() == PLAY && !m_timer->isRunning() && !m_help_used)
   {
+    m_timer->start();
     //TODO: This is wrong, fix it
     *m_logbook << Log(LOG_START_TIMER, clock());
   }
@@ -360,7 +361,7 @@ void GameCtrl::newGame (int change_level)
   m_smiley_button->setDirty();
 
   // m_timer
-  m_timer->start();
+  m_timer->reset();
 
   if (m_options->getAutoStage() == 0 && m_options->getMaxStage() == MAX_STAGE
      &&  m_options->getLevelNr() != USER_DEFINED && !m_options->getShowMines())
@@ -376,6 +377,7 @@ void GameCtrl::newGame (int change_level)
 
   if (m_board->getState() == PLAY && !m_help_used)
   {
+    m_timer->start();
     //TODO: This is wrong, fix it
     *m_logbook << Log(LOG_START_TIMER, clock());
   }
