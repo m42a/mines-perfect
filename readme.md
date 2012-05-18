@@ -1,4 +1,4 @@
-Mines-Perfect - a minesweeper clone
+# Mines-Perfect - a minesweeper clone
 
 This is an updated version of mines-perfect which runs on Linux (and probably
 not on Windows anymore, unfortunately).  I started this port because I really
@@ -12,6 +12,6 @@ compatibility back.  Also, most of the code's comments are in German,
 so if someone could translate them into English, that would be fantastic.
 
 The project isn't very complicated to build; just run `make` and you'll have a
-fully functioning executable names `mines-perfect` in the root directory.  Your
+fully functioning executable named `mines-perfect` in the root directory.  Your
 settings and scores get saved in a file called `mineperf.ini`, which is
 currently stored in the current directory (this will be fixed soon).
