@@ -360,8 +360,7 @@ void GameCtrl::newGame (int change_level)
   m_smiley_button->setDirty();
 
   // m_timer
-  m_timer->stop();
-  m_timer->reset();
+  m_timer->start();
 
   if (m_options->getAutoStage() == 0 && m_options->getMaxStage() == MAX_STAGE
      &&  m_options->getLevelNr() != USER_DEFINED && !m_options->getShowMines())
