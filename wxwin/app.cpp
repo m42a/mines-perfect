@@ -702,6 +702,9 @@ void MainWindow::OnMouseEvent (wxMouseEvent& event)
   static MinesPerfect::Point  prev_pos(-1, -1);
   MinesPerfect::MouseEvent    mp_event;
 
+  if (event.Dragging())
+    //TODO: Fix this to have a real dragging type
+    mp_event.m_type = MinesPerfect::MouseEvent::MOVE;
   if (event.Moving())
     mp_event.m_type = MinesPerfect::MouseEvent::MOVE;
   else if (event.LeftDown())
