@@ -2,6 +2,8 @@
             Mines-Perfect - a minesweeper-clone
             -----------------------------------
 
+See readme.md for up-to-date information
+
 Introduction:
 
   The sources contain all files which are necessary to build
