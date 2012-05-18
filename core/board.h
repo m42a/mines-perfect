@@ -55,6 +55,9 @@ private:
     unsigned           trace;              // z.Zeit noch nicht benutzt
     int                print_width;        // nur fuer print
 
+    typedef std::chrono::high_resolution_clock clock_type;
+    typedef std::chrono::time_point<clock_type> time_point;
+
     // interne Variablen
     vector<Level>      levels;
     BOARD_STATE        state;
@@ -71,7 +74,7 @@ private:
     Eqs*               eqs_visible; // ??? eqs_extern
     Eqs*               eqs_real;    // ??? eqs_intern
     int                poss_oot_nr; // Zaehler aus dem die oot_nr bestimmt wird
-    clock_t            clock0;      //
+    time_point         clock0;      //
     bool               multi_solve;
 
     // Funktionen

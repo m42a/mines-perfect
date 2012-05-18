@@ -1760,7 +1760,7 @@ struct BoardReadError
 //------------------------------------------------------------------------------
 {
   poss_oot_nr = -1;
-  clock0      = clock();
+  clock0      = clock_type::now();
 
   // Variablen setzen
   num_flagged_cells =  0;
@@ -1888,7 +1888,7 @@ struct BoardReadError
 //------------------------------------------------------------------------------
 {
   poss_oot_nr = -1;
-  clock0      = clock();
+  clock0      = clock_type::now();
 
   if (gameOver())
     return;
@@ -1908,7 +1908,7 @@ struct BoardReadError
 //------------------------------------------------------------------------------
 {
   poss_oot_nr = -1;
-  clock0      = clock();
+  clock0      = clock_type::now();
 
   if (mod != ORIGINAL && mod != IMMUNE && mod != HINTS && mod != LUCKY
   &&  mod != STARTUP)
@@ -1929,7 +1929,7 @@ struct BoardReadError
 //------------------------------------------------------------------------------
 {
   poss_oot_nr = -1;
-  clock0      = clock();
+  clock0      = clock_type::now();
 
   if (stage < 0 || 3 < stage || stage == auto_stage)
     return false;
@@ -1953,7 +1953,7 @@ struct BoardReadError
 //------------------------------------------------------------------------------
 {
   poss_oot_nr = -1;
-  clock0      = clock();
+  clock0      = clock_type::now();
 
   if (stage < 1 || 3 < stage || stage == max_stage)
     return false;
@@ -2019,7 +2019,7 @@ struct BoardReadError
 //------------------------------------------------------------------------------
 {
   poss_oot_nr = -1;
-  clock0      = clock();
+  clock0      = clock_type::now();
 
   if (gameOver() || cellIsFlagged(k))
     return false;
@@ -2133,7 +2133,7 @@ struct BoardReadError
 //------------------------------------------------------------------------------
 {
   poss_oot_nr = -1;
-  clock0      = clock();
+  clock0      = clock_type::now();
 
   if (gameOver())
     return false;
@@ -2191,7 +2191,7 @@ struct BoardReadError
   // not playing
   if (!logbook.isPlaying())
   {
-    int  used_time = (clock() - clock0) * 1000 / CLOCKS_PER_SEC;
+    int used_time = std::chrono::duration_cast<std::chrono::milliseconds>(clock_type::now() - clock0).count();
 
     if (used_time >= max_time_multi)
       return 0; // Zeit abgelaufen
@@ -2410,7 +2410,7 @@ struct BoardReadError
 //------------------------------------------------------------------------------
 {
   poss_oot_nr = -1;
-  clock0      = clock();
+  clock0      = clock_type::now();
   
   if (gameOver())
     return;
@@ -2584,7 +2584,7 @@ struct BoardReadError
 //------------------------------------------------------------------------------
 {
   poss_oot_nr = -1;
-  clock0      = clock();
+  clock0      = clock_type::now();
 
   if (gameOver())
   {
