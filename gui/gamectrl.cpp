@@ -274,8 +274,8 @@ void GameCtrl::actWin(void) // eh. actBoard
 
   if (m_board->getState() == PLAY && !m_timer->isRunning() && !m_help_used)
   {
-    clock_t clock0 = m_timer->start();
-    *m_logbook << Log(LOG_START_TIMER, clock0);
+    //TODO: This is wrong, fix it
+    *m_logbook << Log(LOG_START_TIMER, clock());
   }
 
   // geaenderte Zellen
@@ -377,8 +377,8 @@ void GameCtrl::newGame (int change_level)
 
   if (m_board->getState() == PLAY && !m_help_used)
   {
-    clock_t clock0 = m_timer->start();
-    *m_logbook << Log(LOG_START_TIMER, clock0);
+    //TODO: This is wrong, fix it
+    *m_logbook << Log(LOG_START_TIMER, clock());
   }
   
   // cells

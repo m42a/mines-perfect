@@ -18,6 +18,7 @@
 #include <string>
 #include <vector>
 #include <fstream> // visual studio (nur fuer debug-konfiguration)
+#include <chrono>
 
 #ifdef __GNUG__
 #pragma implementation
@@ -475,56 +476,58 @@ class TimerImpl : public MinesPerfect::Timer, public wxTimer
 //------------------------------------------------------------------------------
 {
 public:
-  TimerImpl() : wxTimer() { num_notifies = 0; clock0 = clock1 = 0; }
-    
+  TimerImpl() : wxTimer() { num_notifies = 0; }
+
   bool isRunning() const { return wxTimer::IsRunning(); }
 
   int getMSecs() const
-  { 
-    clock_t c1 = isRunning() ? clock() : clock1;
+  {
+    auto c1 = isRunning() ? clock_type::now() : clock1;
 
-    return 1000 * (c1 - clock0) / CLOCKS_PER_SEC; 
+    return std::chrono::duration_cast<std::chrono::milliseconds>(c1 - clock0).count();
   }
 
-  clock_t start()
+  time_point start()
   {
     reset();
-    clock0 = clock();
-    wxTimer::Start(100); // alle 100 ms
-                // muss kuerzer als eine Sekunde sein, da wxTimer recht ungenau 
+    clock0 = clock_type::now();
+    //This should be shorter than 1 second since wxTimer isn't very accurate
+    wxTimer::Start(100);
+                // alle 100 ms
+                // muss kuerzer als eine Sekunde sein, da wxTimer recht ungenau
                 // ist. Bei 900 ms laeuft die Uhr sehr unruhig.
     return clock0;
   }
-  
+
   void stop()
   {
-    clock1 = clock();
+    clock1 = clock_type::now();
 
     if (wxTimer::IsRunning())
       wxTimer::Stop();
   }
-  
+
   void reset()
   {
     stop();
     num_notifies = 0;
-  }  
-  
-  void Notify()          
-  { 
-    int num2 = (clock() - clock0) / CLOCKS_PER_SEC;
+  }
+
+  void Notify()
+  {
+    int num2 = std::chrono::duration_cast<std::chrono::seconds>(clock_type::now() - clock0).count();
 
     if (num_notifies != num2)
     {
       num_notifies = num2;
-      main_win->game->showTime(num_notifies);  
+      main_win->game->showTime(num_notifies);
     }
   }
 
-private:  
-  clock_t  clock0;
-  clock_t  clock1;
-  int      num_notifies;
+private:
+  time_point  clock0;
+  time_point  clock1;
+  int         num_notifies;
 };
 
 MinesPerfect::Timer*  MinesPerfect::CreateTimer()

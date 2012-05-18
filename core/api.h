@@ -20,7 +20,8 @@
 
 #include <vector>   // fuer Color ?!
 #include <string>
-#include <time.h>
+#include <ctime>
+#include <chrono>
 
 using namespace std;
 
@@ -101,13 +102,16 @@ class Timer // : protected TTimer
 //------------------------------------------------------------------------------
 {
 public:
-  virtual int      getMSecs()  const = 0;
-  virtual bool     isRunning() const = 0;
-  virtual void     Notify()          = 0;
-  virtual clock_t  start()           = 0;
-  virtual void     stop()            = 0;
-  virtual void     reset()           = 0;
-  virtual ~Timer() { }
+  typedef std::chrono::high_resolution_clock clock_type;
+  typedef std::chrono::time_point<clock_type> time_point;
+
+  virtual int         getMSecs()  const = 0;
+  virtual bool        isRunning() const = 0;
+  virtual void        Notify()          = 0;
+  virtual time_point  start()           = 0;
+  virtual void        stop()            = 0;
+  virtual void        reset()           = 0;
+  virtual ~Timer()    { }
 };
 
 Timer* CreateTimer();
