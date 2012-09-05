@@ -637,7 +637,7 @@ string Logbook::exportStr () const
   sprintf(buf, "%d", options.getShowMines());
   text += buf;
   text += sep;
-  sprintf(buf, "%d", rand_seq);
+  sprintf(buf, "%lu", rand_seq);
   text += buf;
   text += sep;
 

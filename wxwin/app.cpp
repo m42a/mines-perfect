@@ -726,7 +726,7 @@ void MainWindow::OnMouseEvent (wxMouseEvent& event)
   game->show();
 }
 
-void MainWindow::OnCloseWindow (wxCloseEvent& event)
+void MainWindow::OnCloseWindow (wxCloseEvent&)
 {
   int x, y;
 
@@ -738,7 +738,7 @@ void MainWindow::OnCloseWindow (wxCloseEvent& event)
   Destroy();
 }
 
-void MainWindow::OnPaintEvent (wxPaintEvent& event)
+void MainWindow::OnPaintEvent (wxPaintEvent&)
 {
   wxPaintDC dc(this); // Zeile muss sein!!!
   

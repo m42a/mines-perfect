@@ -56,7 +56,7 @@
   {
   public:
     wxWave() {}
-    void Create(const char* fname) {}
+    void Create(const char*) {}
     void Play() {}
     bool IsOk() { return false; }
   };
@@ -272,7 +272,7 @@ MinesPerfect::CreateBitmap (const vector<MinesPerfect::Color>& data, int w)
 }
 
 //******************************************************************************
-BitmapImpl::BitmapImpl (const vector<MinesPerfect::Color>& data, int w) // w = width
+BitmapImpl::BitmapImpl (const vector<MinesPerfect::Color>&, int) // w = width
 //------------------------------------------------------------------------------
 {
   // Funktion noch nicht implementiert!
@@ -660,7 +660,7 @@ void MinesPerfect::FindFiles (vector<string>& files, const string& pattern)
   // (aber erst spaeter), falls das Verzeichnis nicht existiert.
 
   // Ende, falls Verzeichnis nicht exist.
-  unsigned i = pattern.rfind('/');
+  auto i = pattern.rfind('/');
 
   if (i != string::npos
   &&  !wxDir::Exists (wxString(pattern.substr(0, i).c_str(), wxConvLocal)))

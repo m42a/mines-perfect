@@ -105,7 +105,7 @@ class GenValidator : public wxValidator
        : m_text(text), m_checker(checker) {}
 
     GenValidator(const GenValidator& val) 
-       : m_text(val.m_text), m_checker(val.m_checker) {}
+       : wxValidator(), m_text(val.m_text), m_checker(val.m_checker) {}
 
     ~GenValidator(){}
 

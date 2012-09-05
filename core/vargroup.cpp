@@ -462,8 +462,8 @@ void VarGroup::buildTree (void) // (ok)
       Var*  xi = *pxi;
 
       if (xi->x.size() <  best_xi->x.size()
-      ||  xi->x.size() == best_xi->x.size()
-          && xi->cells.size() > best_xi->cells.size())
+      || (xi->x.size() == best_xi->x.size()
+          && xi->cells.size() > best_xi->cells.size()))
          best_xi = xi;
     }
 

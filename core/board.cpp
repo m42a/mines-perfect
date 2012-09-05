@@ -157,10 +157,10 @@ struct BoardReadError
   }                     block_type;
   struct
   {
-    int  hx;
-    int  hy;
-    int  vx;
-    int  vy;
+    int  hx=-1;
+    int  hy=-1;
+    int  vx=-1;
+    int  vy=-1;
   }                    tile;
   vector<CellPattern>  cell_patterns;
   ifstream             in (fname.c_str());
@@ -2170,8 +2170,8 @@ struct BoardReadError
   CellState  new_state = the_move.new_state;
 
   if (cellIsOpen (k)
-  ||  new_state == FLAGGED &&  cellIsFlagged (k)
-  ||  new_state == CLEAN   && !cellIsFlagged (k))
+  ||  (new_state == FLAGGED &&  cellIsFlagged (k))
+  ||  (new_state == CLEAN   && !cellIsFlagged (k)))
     return false;
 
   if (new_state == FLAGGED || new_state == CLEAN)
@@ -2444,10 +2444,12 @@ struct BoardReadError
 {
    for (CellNr k = 0; k < (CellNr) cells.size(); k++)
      if (cells[k].isSolved())
+     {
        if (cells[k].isMined() && !cells[k].isFlagged())
          moves.push_back (Move (k, FLAGGED));
        else if (!cells[k].isMined() && !cells[k].isOpen())
          moves.push_back (Move (k, OPEN));
+     }
 
    return  (moves.size() > 0) ? FOUND_MOVE : FOUND_NO_MOVE;
 }

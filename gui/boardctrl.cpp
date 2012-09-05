@@ -88,7 +88,7 @@ BoardCtrl::~BoardCtrl()
 }
 
 //******************************************************************************
-void BoardCtrl::setLevel (const Level& lvl) // oder so aehnlich
+void BoardCtrl::setLevel (const Level&) // oder so aehnlich
 //------------------------------------------------------------------------------
 {
   delAllChildren();
@@ -225,7 +225,7 @@ void BoardCtrl::actCell (CellNr k)
   else
   {
     if (board->cellIsFlagged(k)
-    ||  board->gameIsWon() && board->cellIsMined(k))
+    ||  (board->gameIsWon() && board->cellIsMined(k)))
       symb_bmp = s_symb_flag_bmp;
     else if (board->cellIsClean (k))
       symb_bmp = 0;
@@ -394,7 +394,7 @@ void BoardCtrl::onMouseEvent (const MouseEvent& ev)
     return;
 
   if (ev.m_type == MouseEvent::MOVE
-  ||  ev.m_left_is_down && ev.m_right_is_down)
+  ||  (ev.m_left_is_down && ev.m_right_is_down))
   {
     if (!ev.m_left_is_down)
       return;

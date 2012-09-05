@@ -162,7 +162,7 @@ class Logbook
     const Log&      getPlayLog() const;
     uint32          getRandSeq() const { return rand_seq;    }
     const Options&  getOptions() const { return options;     }
-    const unsigned  getNumLogs() const { return logs.size(); }
+    unsigned        getNumLogs() const { return logs.size(); }
     bool            isPlaying()  const { return is_playing;  }
     bool            eop()        const { return play_index >= cur_index; }
                                  // eop = end-of-play

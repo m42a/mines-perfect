@@ -256,7 +256,7 @@ ShowBestTimesDialog::ShowBestTimesDialog(wxWindow *parent,
 }
 
 //******************************************************************************
-void ShowBestTimesDialog::OnChoice(wxCommandEvent& event)
+void ShowBestTimesDialog::OnChoice(wxCommandEvent&)
 //------------------------------------------------------------------------------
 {
   m_sel_board = m_choice->GetSelection();
