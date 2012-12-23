@@ -96,6 +96,8 @@ class MainWindow: public wxFrame
       void OnPaintEvent     (wxPaintEvent& event);
       void OnSizeEvent       (wxSizeEvent& event);
 
+       virtual bool ProcessEvent(wxEvent& event);
+
   private:
       wxMenu    *GameMenu;
       wxMenu    *BoardMenu;

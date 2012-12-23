@@ -751,6 +751,177 @@ void MainWindow::OnSizeEvent (wxSizeEvent &s)
 {
 	auto size=s.GetSize();
 	cerr << "Size changed to " << size.GetWidth() << " by " << size.GetHeight() << "\n";
+	s.Skip();
 }
 
+bool MainWindow::ProcessEvent(wxEvent& event)
+{
+	//cerr << "Timer=" << wxEVT_TIMER << "\n";
+	auto type=event.GetEventType();
+	if (false) ;
+	//Copy-pasted from the header file
+    else if (type==wxEVT_COMMAND_BUTTON_CLICKED) cerr << "Got event of type wxEVT_COMMAND_BUTTON_CLICKED\n";
+    else if (type==wxEVT_COMMAND_CHECKBOX_CLICKED) cerr << "Got event of type wxEVT_COMMAND_CHECKBOX_CLICKED\n";
+    else if (type==wxEVT_COMMAND_CHOICE_SELECTED) cerr << "Got event of type wxEVT_COMMAND_CHOICE_SELECTED\n";
+    else if (type==wxEVT_COMMAND_LISTBOX_SELECTED) cerr << "Got event of type wxEVT_COMMAND_LISTBOX_SELECTED\n";
+    else if (type==wxEVT_COMMAND_LISTBOX_DOUBLECLICKED) cerr << "Got event of type wxEVT_COMMAND_LISTBOX_DOUBLECLICKED\n";
+    else if (type==wxEVT_COMMAND_CHECKLISTBOX_TOGGLED) cerr << "Got event of type wxEVT_COMMAND_CHECKLISTBOX_TOGGLED\n";
+    // now they are in wx/textctrl.h
+#if WXWIN_COMPATIBILITY_EVENT_TYPES
+    else if (type==wxEVT_COMMAND_TEXT_UPDATED) cerr << "Got event of type wxEVT_COMMAND_TEXT_UPDATED\n";
+    else if (type==wxEVT_COMMAND_TEXT_ENTER) cerr << "Got event of type wxEVT_COMMAND_TEXT_ENTER\n";
+    else if (type==wxEVT_COMMAND_TEXT_URL) cerr << "Got event of type wxEVT_COMMAND_TEXT_URL\n";
+    else if (type==wxEVT_COMMAND_TEXT_MAXLEN) cerr << "Got event of type wxEVT_COMMAND_TEXT_MAXLEN\n";
+#endif // WXWIN_COMPATIBILITY_EVENT_TYPES
+    else if (type==wxEVT_COMMAND_MENU_SELECTED) cerr << "Got event of type wxEVT_COMMAND_MENU_SELECTED\n";
+    else if (type==wxEVT_COMMAND_SLIDER_UPDATED) cerr << "Got event of type wxEVT_COMMAND_SLIDER_UPDATED\n";
+    else if (type==wxEVT_COMMAND_RADIOBOX_SELECTED) cerr << "Got event of type wxEVT_COMMAND_RADIOBOX_SELECTED\n";
+    else if (type==wxEVT_COMMAND_RADIOBUTTON_SELECTED) cerr << "Got event of type wxEVT_COMMAND_RADIOBUTTON_SELECTED\n";
+
+    // wxEVT_COMMAND_SCROLLBAR_UPDATED is now obsolete since we use
+    // wxEVT_SCROLL... events
+
+    else if (type==wxEVT_COMMAND_SCROLLBAR_UPDATED) cerr << "Got event of type wxEVT_COMMAND_SCROLLBAR_UPDATED\n";
+    else if (type==wxEVT_COMMAND_VLBOX_SELECTED) cerr << "Got event of type wxEVT_COMMAND_VLBOX_SELECTED\n";
+    else if (type==wxEVT_COMMAND_COMBOBOX_SELECTED) cerr << "Got event of type wxEVT_COMMAND_COMBOBOX_SELECTED\n";
+    else if (type==wxEVT_COMMAND_TOOL_RCLICKED) cerr << "Got event of type wxEVT_COMMAND_TOOL_RCLICKED\n";
+    else if (type==wxEVT_COMMAND_TOOL_ENTER) cerr << "Got event of type wxEVT_COMMAND_TOOL_ENTER\n";
+    else if (type==wxEVT_COMMAND_SPINCTRL_UPDATED) cerr << "Got event of type wxEVT_COMMAND_SPINCTRL_UPDATED\n";
+
+        // Sockets and timers send events, too
+    else if (type==wxEVT_SOCKET) cerr << "Got event of type wxEVT_SOCKET\n";
+    else if (type==wxEVT_TIMER ) cerr << "Got event of type wxEVT_TIMER \n";
+
+        // Mouse event types
+    else if (type==wxEVT_LEFT_DOWN) cerr << "Got event of type wxEVT_LEFT_DOWN\n";
+    else if (type==wxEVT_LEFT_UP) cerr << "Got event of type wxEVT_LEFT_UP\n";
+    else if (type==wxEVT_MIDDLE_DOWN) cerr << "Got event of type wxEVT_MIDDLE_DOWN\n";
+    else if (type==wxEVT_MIDDLE_UP) cerr << "Got event of type wxEVT_MIDDLE_UP\n";
+    else if (type==wxEVT_RIGHT_DOWN) cerr << "Got event of type wxEVT_RIGHT_DOWN\n";
+    else if (type==wxEVT_RIGHT_UP) cerr << "Got event of type wxEVT_RIGHT_UP\n";
+    else if (type==wxEVT_MOTION) cerr << "Got event of type wxEVT_MOTION\n";
+    else if (type==wxEVT_ENTER_WINDOW) cerr << "Got event of type wxEVT_ENTER_WINDOW\n";
+    else if (type==wxEVT_LEAVE_WINDOW) cerr << "Got event of type wxEVT_LEAVE_WINDOW\n";
+    else if (type==wxEVT_LEFT_DCLICK) cerr << "Got event of type wxEVT_LEFT_DCLICK\n";
+    else if (type==wxEVT_MIDDLE_DCLICK) cerr << "Got event of type wxEVT_MIDDLE_DCLICK\n";
+    else if (type==wxEVT_RIGHT_DCLICK) cerr << "Got event of type wxEVT_RIGHT_DCLICK\n";
+    else if (type==wxEVT_SET_FOCUS) cerr << "Got event of type wxEVT_SET_FOCUS\n";
+    else if (type==wxEVT_KILL_FOCUS) cerr << "Got event of type wxEVT_KILL_FOCUS\n";
+    else if (type==wxEVT_CHILD_FOCUS) cerr << "Got event of type wxEVT_CHILD_FOCUS\n";
+    else if (type==wxEVT_MOUSEWHEEL) cerr << "Got event of type wxEVT_MOUSEWHEEL\n";
+
+        // Non-client mouse events
+    else if (type==wxEVT_NC_LEFT_DOWN) cerr << "Got event of type wxEVT_NC_LEFT_DOWN\n";
+    else if (type==wxEVT_NC_LEFT_UP) cerr << "Got event of type wxEVT_NC_LEFT_UP\n";
+    else if (type==wxEVT_NC_MIDDLE_DOWN) cerr << "Got event of type wxEVT_NC_MIDDLE_DOWN\n";
+    else if (type==wxEVT_NC_MIDDLE_UP) cerr << "Got event of type wxEVT_NC_MIDDLE_UP\n";
+    else if (type==wxEVT_NC_RIGHT_DOWN) cerr << "Got event of type wxEVT_NC_RIGHT_DOWN\n";
+    else if (type==wxEVT_NC_RIGHT_UP) cerr << "Got event of type wxEVT_NC_RIGHT_UP\n";
+    else if (type==wxEVT_NC_MOTION) cerr << "Got event of type wxEVT_NC_MOTION\n";
+    else if (type==wxEVT_NC_ENTER_WINDOW) cerr << "Got event of type wxEVT_NC_ENTER_WINDOW\n";
+    else if (type==wxEVT_NC_LEAVE_WINDOW) cerr << "Got event of type wxEVT_NC_LEAVE_WINDOW\n";
+    else if (type==wxEVT_NC_LEFT_DCLICK) cerr << "Got event of type wxEVT_NC_LEFT_DCLICK\n";
+    else if (type==wxEVT_NC_MIDDLE_DCLICK) cerr << "Got event of type wxEVT_NC_MIDDLE_DCLICK\n";
+    else if (type==wxEVT_NC_RIGHT_DCLICK) cerr << "Got event of type wxEVT_NC_RIGHT_DCLICK\n";
+
+        // Character input event type
+    else if (type==wxEVT_CHAR) cerr << "Got event of type wxEVT_CHAR\n";
+    else if (type==wxEVT_CHAR_HOOK) cerr << "Got event of type wxEVT_CHAR_HOOK\n";
+    else if (type==wxEVT_NAVIGATION_KEY) cerr << "Got event of type wxEVT_NAVIGATION_KEY\n";
+    else if (type==wxEVT_KEY_DOWN) cerr << "Got event of type wxEVT_KEY_DOWN\n";
+    else if (type==wxEVT_KEY_UP) cerr << "Got event of type wxEVT_KEY_UP\n";
+#if wxUSE_HOTKEY
+    else if (type==wxEVT_HOTKEY) cerr << "Got event of type wxEVT_HOTKEY\n";
+#endif
+        // Set cursor event
+    else if (type==wxEVT_SET_CURSOR) cerr << "Got event of type wxEVT_SET_CURSOR\n";
+
+        // wxScrollBar and wxSlider event identifiers
+    else if (type==wxEVT_SCROLL_TOP) cerr << "Got event of type wxEVT_SCROLL_TOP\n";
+    else if (type==wxEVT_SCROLL_BOTTOM) cerr << "Got event of type wxEVT_SCROLL_BOTTOM\n";
+    else if (type==wxEVT_SCROLL_LINEUP) cerr << "Got event of type wxEVT_SCROLL_LINEUP\n";
+    else if (type==wxEVT_SCROLL_LINEDOWN) cerr << "Got event of type wxEVT_SCROLL_LINEDOWN\n";
+    else if (type==wxEVT_SCROLL_PAGEUP) cerr << "Got event of type wxEVT_SCROLL_PAGEUP\n";
+    else if (type==wxEVT_SCROLL_PAGEDOWN) cerr << "Got event of type wxEVT_SCROLL_PAGEDOWN\n";
+    else if (type==wxEVT_SCROLL_THUMBTRACK) cerr << "Got event of type wxEVT_SCROLL_THUMBTRACK\n";
+    else if (type==wxEVT_SCROLL_THUMBRELEASE) cerr << "Got event of type wxEVT_SCROLL_THUMBRELEASE\n";
+    else if (type==wxEVT_SCROLL_CHANGED) cerr << "Got event of type wxEVT_SCROLL_CHANGED\n";
+
+        // Scroll events from wxWindow
+    else if (type==wxEVT_SCROLLWIN_TOP) cerr << "Got event of type wxEVT_SCROLLWIN_TOP\n";
+    else if (type==wxEVT_SCROLLWIN_BOTTOM) cerr << "Got event of type wxEVT_SCROLLWIN_BOTTOM\n";
+    else if (type==wxEVT_SCROLLWIN_LINEUP) cerr << "Got event of type wxEVT_SCROLLWIN_LINEUP\n";
+    else if (type==wxEVT_SCROLLWIN_LINEDOWN) cerr << "Got event of type wxEVT_SCROLLWIN_LINEDOWN\n";
+    else if (type==wxEVT_SCROLLWIN_PAGEUP) cerr << "Got event of type wxEVT_SCROLLWIN_PAGEUP\n";
+    else if (type==wxEVT_SCROLLWIN_PAGEDOWN) cerr << "Got event of type wxEVT_SCROLLWIN_PAGEDOWN\n";
+    else if (type==wxEVT_SCROLLWIN_THUMBTRACK) cerr << "Got event of type wxEVT_SCROLLWIN_THUMBTRACK\n";
+    else if (type==wxEVT_SCROLLWIN_THUMBRELEASE) cerr << "Got event of type wxEVT_SCROLLWIN_THUMBRELEASE\n";
+
+        // System events
+    else if (type==wxEVT_SIZE) cerr << "Got event of type wxEVT_SIZE\n";
+    else if (type==wxEVT_MOVE) cerr << "Got event of type wxEVT_MOVE\n";
+    else if (type==wxEVT_CLOSE_WINDOW) cerr << "Got event of type wxEVT_CLOSE_WINDOW\n";
+    else if (type==wxEVT_END_SESSION) cerr << "Got event of type wxEVT_END_SESSION\n";
+    else if (type==wxEVT_QUERY_END_SESSION) cerr << "Got event of type wxEVT_QUERY_END_SESSION\n";
+    else if (type==wxEVT_ACTIVATE_APP) cerr << "Got event of type wxEVT_ACTIVATE_APP\n";
+    // 406..408 are power events
+    else if (type==wxEVT_ACTIVATE) cerr << "Got event of type wxEVT_ACTIVATE\n";
+    else if (type==wxEVT_CREATE) cerr << "Got event of type wxEVT_CREATE\n";
+    else if (type==wxEVT_DESTROY) cerr << "Got event of type wxEVT_DESTROY\n";
+    else if (type==wxEVT_SHOW) cerr << "Got event of type wxEVT_SHOW\n";
+    else if (type==wxEVT_ICONIZE) cerr << "Got event of type wxEVT_ICONIZE\n";
+    else if (type==wxEVT_MAXIMIZE) cerr << "Got event of type wxEVT_MAXIMIZE\n";
+    else if (type==wxEVT_MOUSE_CAPTURE_CHANGED) cerr << "Got event of type wxEVT_MOUSE_CAPTURE_CHANGED\n";
+    else if (type==wxEVT_MOUSE_CAPTURE_LOST) cerr << "Got event of type wxEVT_MOUSE_CAPTURE_LOST\n";
+    else if (type==wxEVT_PAINT) cerr << "Got event of type wxEVT_PAINT\n";
+    else if (type==wxEVT_ERASE_BACKGROUND) cerr << "Got event of type wxEVT_ERASE_BACKGROUND\n";
+    else if (type==wxEVT_NC_PAINT) cerr << "Got event of type wxEVT_NC_PAINT\n";
+    else if (type==wxEVT_PAINT_ICON) cerr << "Got event of type wxEVT_PAINT_ICON\n";
+    else if (type==wxEVT_MENU_OPEN) cerr << "Got event of type wxEVT_MENU_OPEN\n";
+    else if (type==wxEVT_MENU_CLOSE) cerr << "Got event of type wxEVT_MENU_CLOSE\n";
+    else if (type==wxEVT_MENU_HIGHLIGHT) cerr << "Got event of type wxEVT_MENU_HIGHLIGHT\n";
+    else if (type==wxEVT_CONTEXT_MENU) cerr << "Got event of type wxEVT_CONTEXT_MENU\n";
+    else if (type==wxEVT_SYS_COLOUR_CHANGED) cerr << "Got event of type wxEVT_SYS_COLOUR_CHANGED\n";
+    else if (type==wxEVT_DISPLAY_CHANGED) cerr << "Got event of type wxEVT_DISPLAY_CHANGED\n";
+    else if (type==wxEVT_SETTING_CHANGED) cerr << "Got event of type wxEVT_SETTING_CHANGED\n";
+    else if (type==wxEVT_QUERY_NEW_PALETTE) cerr << "Got event of type wxEVT_QUERY_NEW_PALETTE\n";
+    else if (type==wxEVT_PALETTE_CHANGED) cerr << "Got event of type wxEVT_PALETTE_CHANGED\n";
+    else if (type==wxEVT_JOY_BUTTON_DOWN) cerr << "Got event of type wxEVT_JOY_BUTTON_DOWN\n";
+    else if (type==wxEVT_JOY_BUTTON_UP) cerr << "Got event of type wxEVT_JOY_BUTTON_UP\n";
+    else if (type==wxEVT_JOY_MOVE) cerr << "Got event of type wxEVT_JOY_MOVE\n";
+    else if (type==wxEVT_JOY_ZMOVE) cerr << "Got event of type wxEVT_JOY_ZMOVE\n";
+    else if (type==wxEVT_DROP_FILES) cerr << "Got event of type wxEVT_DROP_FILES\n";
+    else if (type==wxEVT_DRAW_ITEM) cerr << "Got event of type wxEVT_DRAW_ITEM\n";
+    else if (type==wxEVT_MEASURE_ITEM) cerr << "Got event of type wxEVT_MEASURE_ITEM\n";
+    else if (type==wxEVT_COMPARE_ITEM) cerr << "Got event of type wxEVT_COMPARE_ITEM\n";
+    else if (type==wxEVT_INIT_DIALOG) cerr << "Got event of type wxEVT_INIT_DIALOG\n";
+    else if (type==wxEVT_IDLE) ;//cerr << "Got event of type wvEVT_IDLE\n";
+    else if (type==wxEVT_UPDATE_UI) ;//cerr << "Got event of type wxEVT_UPDATE_UI\n";
+    else if (type==wxEVT_SIZING) cerr << "Got event of type wxEVT_SIZING\n";
+    else if (type==wxEVT_MOVING) cerr << "Got event of type wxEVT_MOVING\n";
+    else if (type==wxEVT_HIBERNATE) cerr << "Got event of type wxEVT_HIBERNATE\n";
+    // more power events follow -- see wx/power.h
+
+        // Clipboard events
+    else if (type==wxEVT_COMMAND_TEXT_COPY) cerr << "Got event of type wxEVT_COMMAND_TEXT_COPY\n";
+    else if (type==wxEVT_COMMAND_TEXT_CUT) cerr << "Got event of type wxEVT_COMMAND_TEXT_CUT\n";
+    else if (type==wxEVT_COMMAND_TEXT_PASTE) cerr << "Got event of type wxEVT_COMMAND_TEXT_PASTE\n";
+
+        // Generic command events
+        // Note: a click is a higher-level event than button down/up
+    else if (type==wxEVT_COMMAND_LEFT_CLICK) cerr << "Got event of type wxEVT_COMMAND_LEFT_CLICK\n";
+    else if (type==wxEVT_COMMAND_LEFT_DCLICK) cerr << "Got event of type wxEVT_COMMAND_LEFT_DCLICK\n";
+    else if (type==wxEVT_COMMAND_RIGHT_CLICK) cerr << "Got event of type wxEVT_COMMAND_RIGHT_CLICK\n";
+    else if (type==wxEVT_COMMAND_RIGHT_DCLICK) cerr << "Got event of type wxEVT_COMMAND_RIGHT_DCLICK\n";
+    else if (type==wxEVT_COMMAND_SET_FOCUS) cerr << "Got event of type wxEVT_COMMAND_SET_FOCUS\n";
+    else if (type==wxEVT_COMMAND_KILL_FOCUS) cerr << "Got event of type wxEVT_COMMAND_KILL_FOCUS\n";
+    else if (type==wxEVT_COMMAND_ENTER) cerr << "Got event of type wxEVT_COMMAND_ENTER\n";
+
+        // Help events
+    else if (type==wxEVT_HELP) cerr << "Got event of type wxEVT_HELP\n";
+    else if (type==wxEVT_DETAILED_HELP) cerr << "Got event of type wxEVT_DETAILED_HELP\n";
+    else cerr << "Got unknown event with type " << type << "\n";
+
+	return this->wxEvtHandler::ProcessEvent(event);
+}
 
