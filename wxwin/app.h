@@ -94,6 +94,7 @@ class MainWindow: public wxFrame
       void OnMouseEvent     (wxMouseEvent& event);
       void OnCloseWindow    (wxCloseEvent& event);
       void OnPaintEvent     (wxPaintEvent& event);
+      void OnSizeEvent       (wxSizeEvent& event);
 
   private:
       wxMenu    *GameMenu;

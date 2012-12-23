@@ -154,6 +154,7 @@ BEGIN_EVENT_TABLE( MainWindow, wxFrame )
    EVT_MOUSE_EVENTS (MainWindow::OnMouseEvent)
    EVT_CLOSE        (MainWindow::OnCloseWindow)
    EVT_PAINT        (MainWindow::OnPaintEvent)
+   EVT_SIZE         (MainWindow::OnSizeEvent)
 END_EVENT_TABLE()                                                
 
 IMPLEMENT_APP(MainApp)
@@ -746,5 +747,10 @@ void MainWindow::OnPaintEvent (wxPaintEvent&)
   game->show();
 }
 
+void MainWindow::OnSizeEvent (wxSizeEvent &s)
+{
+	auto size=s.GetSize();
+	cerr << "Size changed to " << size.GetWidth() << " by " << size.GetHeight() << "\n";
+}
 
 
