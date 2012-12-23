@@ -330,7 +330,7 @@ MainWindow::MainWindow(const wxString &title, const wxPoint &pos, const wxSize &
   GameMenu->AppendSeparator();
   GameMenu->Append( MENU_GAME_BEST_TIMES,   wxString("Best&Times", wxConvLocal)    );
   GameMenu->AppendSeparator();
-  GameMenu->Append( MENU_GAME_EXIT,         wxString("E&xit", wxConvLocal)         );
+  GameMenu->Append( MENU_GAME_EXIT,         wxString("E&xit\tAlt-F4", wxConvLocal)         );
 
   GameMenu->Enable( MENU_GAME_LUCKY, false );
   GameMenu->Check ( MENU_GAME_BEGINNER, true);
