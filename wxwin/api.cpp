@@ -596,7 +596,10 @@ void MinesPerfect::DlgNewRecord (Options* options, int num_msecs, bool certified
 void MinesPerfect::WinSetSize (const MinesPerfect::Point& sz)
 //------------------------------------------------------------------------------
 {
-  main_win->SetClientSize (sz.x, sz.y);
+  wxSize client_size(sz.x,sz.y);
+  auto window_size=main_win->ClientToWindowSize(client_size);
+  main_win->SetSizeHints(window_size, window_size);
+  main_win->SetClientSize (client_size);
   main_win->Show(TRUE);
 }
 
