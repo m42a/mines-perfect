@@ -596,16 +596,18 @@ void MinesPerfect::DlgNewRecord (Options* options, int num_msecs, bool certified
 void MinesPerfect::WinSetSize (const MinesPerfect::Point& sz)
 //------------------------------------------------------------------------------
 {
-  main_win->SetClientSize (sz.x, sz.y);
+  wxSize size(sz.x,sz.y);
+  auto adjusted_size=main_win->ClientToWindowSize(size);
+  main_win->SetSizeHints(adjusted_size, adjusted_size);
+  main_win->SetClientSize (size);
   main_win->Show(TRUE);
 
-  auto size=main_win->GetSize();
+  auto win_size=main_win->GetSize();
   auto client_size=main_win->GetClientSize();
   auto pos=main_win->GetScreenPosition();
-  cerr << "\n";
   cerr << "Window at (" << pos.x << "," << pos.y << ")\n";
-  cerr << "Width: " << sz.x << " " << size.GetWidth() << " " << client_size.GetWidth() << "\n";
-  cerr << "Height: " << sz.y << " " << size.GetHeight() << " " << client_size.GetHeight() << "\n";
+  cerr << "Width: " << sz.x << " " << win_size.GetWidth() << " " << client_size.GetWidth() << "\n";
+  cerr << "Height: " << sz.y << " " << win_size.GetHeight() << " " << client_size.GetHeight() << "\n";
 
 }
 
