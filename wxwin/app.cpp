@@ -389,7 +389,7 @@ void MainWindow::CreateBoardMenu()
 void MainWindow::OpenFile()
 {
   wxString      start_dir = wxGetCwd();
-  wxFileDialog  dlg(this, wxString("Choose a file", wxConvLocal), dlg_dir, dlg_file, wxString("*.log", wxConvLocal), wxOPEN);
+  wxFileDialog  dlg(this, wxString("Choose a file", wxConvLocal), dlg_dir, dlg_file, wxString("*.log", wxConvLocal), wxFD_OPEN);
 
   int rc = dlg.ShowModal();
   
@@ -409,7 +409,7 @@ void MainWindow::OpenFile()
 void MainWindow::SaveFile()
 {
   wxString      start_dir = wxGetCwd();
-  wxFileDialog  dlg(this, wxString("Choose a file", wxConvLocal), dlg_dir, dlg_file, wxString("*.log", wxConvLocal), wxSAVE);
+  wxFileDialog  dlg(this, wxString("Choose a file", wxConvLocal), dlg_dir, dlg_file, wxString("*.log", wxConvLocal), wxFD_SAVE);
 
   int rc = dlg.ShowModal();
 

@@ -702,7 +702,7 @@ void ExceptionDialog::OnButton(wxCommandEvent& event)
   else if (event.GetEventObject() == m_save_button)
   {
     wxString      start_dir = wxGetCwd();
-    wxFileDialog  dlg(main_win, wxString("Choose a file", wxConvLocal), wxString("", wxConvLocal), wxString("", wxConvLocal), wxString("*.log", wxConvLocal), wxSAVE);
+    wxFileDialog  dlg(main_win, wxString("Choose a file", wxConvLocal), wxString("", wxConvLocal), wxString("", wxConvLocal), wxString("*.log", wxConvLocal), wxFD_SAVE);
 
     int rc = dlg.ShowModal();
 
