@@ -1,6 +1,6 @@
 CPP:=g++
 CFLAGS:=-Wall -Wextra -Wno-literal-suffix -Wno-unused-local-typedefs -Werror -O3 -std=c++0x -D_VARIANT_=4
-WXLIBS:=$(shell wx-config --libs)
+WXLIBS:=$(shell wx-config --libs core,base)
 WXFLAGS:=$(shell wx-config --cxxflags)
 
 CORE_OBJS:=core/board.o core/eqs.o core/logbook.o core/options.o core/perfana.o core/utils.o core/vargroup.o
