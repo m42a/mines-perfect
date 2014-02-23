@@ -24,6 +24,9 @@
   #define stricmp strcasecmp
 #endif
 
+#include "wx/wx.h"
+#include "wx/config.h"
+
 using namespace std;
 
 #include "options.h"
@@ -146,7 +149,7 @@ const char INI_FNAME[] = "mineperf.ini";
 }
 
 //******************************************************************************
-  int BoardType::getChecksum(int nr, int version)
+  int BoardType::getChecksum(int nr, int version) const
 //------------------------------------------------------------------------------
 {
   ASSERT (0 <= nr && nr <= 2);
@@ -188,7 +191,7 @@ const char INI_FNAME[] = "mineperf.ini";
   Options::Options()
 //------------------------------------------------------------------------------
 {
-  if (!loadIni())
+  if (!load() && !loadIni())
   {
     // default Werte
     Level lvl;
@@ -229,7 +232,7 @@ const char INI_FNAME[] = "mineperf.ini";
 {
   board_types[board_nr].deleteRecords();
 
-  saveIni();
+  save();
 }
 
 //******************************************************************************
@@ -290,6 +293,105 @@ const char INI_FNAME[] = "mineperf.ini";
   }
 }
 
+//******************************************************************************
+  bool Options::load()
+//------------------------------------------------------------------------------
+{
+  wxConfig conf(TITLE);
+
+  int version;
+  bool found=conf.Read("Version", &version);
+  if (!found)
+    return false;
+  if (version < 100 || 999 < version)
+    return false;
+
+  Level lvl;
+  lvl.nr=LevelNr(conf.Read("Level", BEGINNER));
+  lvl.height=conf.Read("Height", 8);
+  lvl.width=conf.Read("Width", 8);
+  lvl.deep=conf.Read("Deep", 0L);
+  lvl.num_mines=conf.Read("Mines", 10);
+  lvl.num_wholes=conf.Read("Wholes", -1);
+  if (!setLevel(lvl))
+    return false;
+
+  Modus mod=Modus(conf.Read("Modus", LUCKY));
+  if (!setModus(mod))
+    return false;
+  int xpos=conf.Read("Xpos", 100);
+  setXPos(xpos);
+  int ypos=conf.Read("Ypos", 100);
+  setYPos(ypos);
+  BoardNr bnr=conf.Read("BoardNr", 0L);
+  bool m_law=conf.Read("MurphysLaw", true);
+  setMurphysLaw(m_law);
+
+  conf.SetPath("/Users");
+  wxString name;
+  wxString password;
+  long cookie;
+  bool has_entry=conf.GetFirstEntry(name, cookie);
+  while (has_entry)
+  {
+    conf.Read(name, &password);
+    User u;
+    u.name=name;
+    u.password=password;
+    users.push_back(u);
+    has_entry=conf.GetNextEntry(name, cookie);
+  }
+
+  board_types.clear();
+  board_types.push_back (BoardType ("Square"));
+  board_types.push_back (BoardType ("Hexagon"));
+  board_types.push_back (BoardType ("Triangle"));
+  board_types.push_back (BoardType ("3d-Grid"));
+
+  for (auto &bt : board_types)
+  {
+    conf.SetPath("/");
+    conf.SetPath(bt.name);
+
+    conf.Read("Time0", &bt.records[0].time);
+    if (bt.records[0].time<0 || bt.records[0].time>MAX_MSECS)
+      return false;
+    conf.Read("Date0", &bt.records[0].date);
+    bt.records[0].name=conf.Read("Name0", "");
+    conf.Read("CertifiedBoard0", &bt.records[0].certified_board);
+    conf.Read("WasSend0", &bt.records[0].was_send);
+    int checksum=conf.Read("Checksum0", -1);
+    if (checksum!=bt.getChecksum(0,Glob::VERSION))
+      bt.records[0].reset();
+
+    conf.Read("Time1", &bt.records[1].time);
+    if (bt.records[1].time<0 || bt.records[1].time>MAX_MSECS)
+      return false;
+    conf.Read("Date1", &bt.records[1].date);
+    bt.records[1].name=conf.Read("Name1", "");
+    conf.Read("CertifiedBoard1", &bt.records[1].certified_board);
+    conf.Read("WasSend1", &bt.records[1].was_send);
+    checksum=conf.Read("Checksum1", -1);
+    if (checksum!=bt.getChecksum(1,Glob::VERSION))
+      bt.records[1].reset();
+
+    conf.Read("Time2", &bt.records[2].time);
+    if (bt.records[2].time<0 || bt.records[2].time>MAX_MSECS)
+      return false;
+    conf.Read("Date2", &bt.records[2].date);
+    bt.records[2].name=conf.Read("Name2", "");
+    conf.Read("CertifiedBoard2", &bt.records[2].certified_board);
+    conf.Read("WasSend2", &bt.records[2].was_send);
+    checksum=conf.Read("Checksum2", -1);
+    if (checksum!=bt.getChecksum(2,Glob::VERSION))
+      bt.records[2].reset();
+  }
+
+  if (!setBoardNr(bnr))
+    return false;
+
+  return true;
+}
 
 //******************************************************************************
   bool Options::loadIni()
@@ -465,66 +567,58 @@ const char INI_FNAME[] = "mineperf.ini";
 }
 
 //******************************************************************************
-  void Options::saveIni()
+  void Options::save() const
 //------------------------------------------------------------------------------
 {
-  // speichern
-  ofstream  out(INI_FNAME);
-  unsigned  i;
+  wxConfig conf(TITLE);
 
-  out << "[" << TITLE << " " << Glob::VERSION << "]"       << '\n'
-      << "Level="      << getLevel().nr                    << '\n'
-      << "Modus="      << getModus()                       << '\n'
-      << "Height="     << getLevel().height                << '\n'
-      << "Width="      << getLevel().width                 << '\n'
-      << "Deep="       << getLevel().deep                  << '\n'
-      << "Mines="      << getLevel().num_mines             << '\n'
-      << "Wholes="     << getLevel().num_wholes            << '\n'
-      << "Xpos="       << getXPos()                        << '\n'
-      << "Ypos="       << getYPos()                        << '\n'
-      << "BoardNr="    << getBoardNr()                     << '\n'
-      << "MurphysLaw=" << (getMurphysLaw() ? "on" : "off") << '\n';
+  conf.Write("Version", Glob::VERSION);
+  conf.Write("Level", long(getLevel().nr));
+  conf.Write("Modus", long(getModus()));
+  conf.Write("Height", getLevel().height);
+  conf.Write("Width", getLevel().width);
+  conf.Write("Deep", getLevel().deep);
+  conf.Write("Mines", getLevel().num_mines);
+  conf.Write("Wholes", getLevel().num_wholes);
+  conf.Write("Xpos", getXPos());
+  conf.Write("Ypos", getYPos());
+  conf.Write("BoardNr", getBoardNr());
+  conf.Write("MurphysLaw", getMurphysLaw());
 
-
-  out << '\n';
-  out << "[" << USERS << "]\n";
-  for (i = 0; i < users.size(); ++i)
+  conf.SetPath("/Users");
+  for (const auto &u : users)
   {
-    out << users[i].name << "=" << users[i].password << '\n';
+    conf.Write(u.name, wxString(u.password));
   }
 
-  for (i = 0; i < board_types.size(); ++i)
+  for (const auto &bt : board_types)
   {
-    out << '\n';
-    out << '<'           << board_types[i].name            << ">\n";
-    out << "Time0="      << board_types[i].records[0].time << '\n';
-    out << "Date0="      << board_types[i].records[0].date << '\n';
-    out << "Name0="      << board_types[i].records[0].name << '\n';
-    out << "CertifiedBoard0=" 
-                         << (board_types[i].records[0].certified_board ? 1 : 0) 
-                         << '\n';
-    out << "Checksum0="  << board_types[i].getChecksum(0,Glob::VERSION) << '\n';
-    out << "WasSend0="   << board_types[i].records[0].was_send << '\n';
-    
-    out << "Time1="      << board_types[i].records[1].time << '\n';
-    out << "Date1="      << board_types[i].records[1].date << '\n';
-    out << "Name1="      << board_types[i].records[1].name << '\n';
-    out << "CertifiedBoard1=" 
-                         << (board_types[i].records[1].certified_board ? 1 : 0) 
-                         << '\n';
-    out << "Checksum1="  << board_types[i].getChecksum(1,Glob::VERSION) << '\n';
-    out << "WasSend1="   << board_types[i].records[1].was_send << '\n';
-    
-    out << "Time2="      << board_types[i].records[2].time << '\n';
-    out << "Date2="      << board_types[i].records[2].date << '\n';
-    out << "Name2="      << board_types[i].records[2].name << '\n';
-    out << "CertifiedBoard2=" 
-                         << (board_types[i].records[2].certified_board ? 1 : 0) 
-                         << '\n';
-    out << "Checksum2="  << board_types[i].getChecksum(2,Glob::VERSION) << '\n';
-    out << "WasSend2="   << board_types[i].records[2].was_send << '\n';
+    conf.SetPath("/");
+    conf.SetPath(bt.name);
+
+    conf.Write("Time0", bt.records[0].time);
+    conf.Write("Date0", bt.records[0].date);
+    conf.Write("Name0", wxString(bt.records[0].name));
+    conf.Write("CertifiedBoard0", bt.records[0].certified_board);
+    conf.Write("Checksum0", bt.getChecksum(0,Glob::VERSION));
+    conf.Write("WasSend0", bt.records[0].was_send);
+
+    conf.Write("Time1", bt.records[1].time);
+    conf.Write("Date1", bt.records[1].date);
+    conf.Write("Name1", wxString(bt.records[1].name));
+    conf.Write("CertifiedBoard1", bt.records[1].certified_board);
+    conf.Write("Checksum1", bt.getChecksum(1,Glob::VERSION));
+    conf.Write("WasSend1", bt.records[1].was_send);
+
+    conf.Write("Time2", bt.records[2].time);
+    conf.Write("Date2", bt.records[2].date);
+    conf.Write("Name2", wxString(bt.records[2].name));
+    conf.Write("CertifiedBoard2", bt.records[2].certified_board);
+    conf.Write("Checksum2", bt.getChecksum(2,Glob::VERSION));
+    conf.Write("WasSend2", bt.records[2].was_send);
   }
 }
+
 
 //******************************************************************************
   const string Options::getBoardName (BoardNr nr) const

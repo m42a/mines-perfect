@@ -120,7 +120,7 @@ typedef int  StageNr;
   
   void deleteRecord(int nr) { if (0 <= nr && nr <= 2) records[nr].reset(); }
   void deleteRecords();
-  int  getChecksum(int nr, int version);
+  int  getChecksum(int nr, int version) const;
 };
 
 //******************************************************************************
@@ -150,8 +150,9 @@ public:
   Options();
   ~Options(){}
 
+  bool   load();
+  void   save() const;
   bool   loadIni();
-  void   saveIni();
   void   deleteRecords();
   void   addBoard (string n) { board_types.push_back (BoardType (n)); }
   void   actBoards();

@@ -733,7 +733,7 @@ void MainWindow::OnCloseWindow (wxCloseEvent&)
   GetPosition(&x, &y);
   game->m_options->setXPos(x);
   game->m_options->setYPos(y);
-  game->m_options->saveIni();
+  game->m_options->save();
   
   Destroy();
 }
