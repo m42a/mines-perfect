@@ -284,7 +284,7 @@ void MainWindow::ActMenu()
 }
 
 MainWindow::MainWindow(const wxString &title, const wxPoint &pos, const wxSize &size)
-    : wxFrame((wxFrame *) NULL, -1, title, pos, size, wxMINIMIZE_BOX | wxSYSTEM_MENU | wxCAPTION)
+    : wxFrame((wxFrame *) NULL, -1, title, pos, size, wxMINIMIZE_BOX | wxCLOSE_BOX | wxSYSTEM_MENU | wxCAPTION)
 {
 //    wxIcon  app_icon ("mine16.ico", wxBITMAP_TYPE_ICO);
   wxIcon  app_icon (mine16_xpm);

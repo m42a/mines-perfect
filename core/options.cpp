@@ -15,6 +15,9 @@
 // along with this program; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#ifdef __STRICT_ANSI__
+	#undef __STRICT_ANSI__
+#endif
 #include <map>
 #include <string>
 #include <cstdlib>
@@ -22,6 +25,9 @@
 #ifdef __unix__
   #include <strings.h>
   #define stricmp strcasecmp
+#elif _WIN32
+  #include <strings.h>
+  #define stricmp _stricmp
 #endif
 
 #include "wx/wx.h"
