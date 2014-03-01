@@ -49,7 +49,7 @@
 #include <wx/string.h>
 #include <wx/mimetype.h>
 
-#if (defined __WXMSW__) || wxUSE_WAVE
+#if (defined __WXMSW__) || wxUSE_SOUND
   #include <wx/sound.h>
 #else
   class wxSound

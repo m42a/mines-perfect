@@ -1,5 +1,5 @@
 CPP:=g++
-CFLAGS:=-Wall -Wextra -Wno-literal-suffix -Wno-unused-local-typedefs -Werror -O3 -std=c++0x -D_VARIANT_=4
+CFLAGS:=-Wall -Wextra -Wno-literal-suffix -Wno-unused-local-typedefs -Werror -O3 -std=gnu++0x -D_VARIANT_=4
 WXLIBS:=$(shell wx-config --libs core,base,adv)
 WXFLAGS:=$(shell wx-config --cxxflags)
 
