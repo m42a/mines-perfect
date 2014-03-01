@@ -22,6 +22,9 @@
 #ifdef __unix__
   #include <strings.h>
   #define stricmp strcasecmp
+#elif _WIN32
+  #include <strings.h>
+  #define stricmp _stricmp
 #endif
 
 #include "wx/wx.h"

@@ -49,13 +49,13 @@
 #include <wx/string.h>
 #include <wx/mimetype.h>
 
-#if (defined __WXMSW__) || wxUSE_WAVE
-  #include <wx/wave.h>
+#if (defined __WXMSW__) || wxUSE_SOUND
+  #include <wx/sound.h>
 #else
-  class wxWave
+  class wxSound
   {
   public:
-    wxWave() {}
+    wxSound() {}
     void Create(const char*) {}
     void Play() {}
     bool IsOk() { return false; }
@@ -310,7 +310,7 @@ BitmapImpl::BitmapImpl (const string& kind, const string& spec)
     //This will ASSERT if it fails to load the file
     else                                      LoadImage (image, fname, true);
 
-    bitmap = image;
+    bitmap = wxBitmap(image);
     return;
   }
 
@@ -396,7 +396,7 @@ BitmapImpl::BitmapImpl (const string& kind, const string& spec)
   wxRect  rect (j * w, i * h, w, h);
 
   image  = image.GetSubImage (rect);
-  bitmap = image;
+  bitmap = wxBitmap(image);
 }
 
 //******************************************************************************
@@ -410,7 +410,7 @@ BitmapImpl::BitmapImpl (const MinesPerfect::Bitmap* from, const MinesPerfect::Re
   ASSERT (from2 != 0);
   
   image  = from2->image.GetSubImage(rect2);
-  bitmap = image;
+  bitmap = wxBitmap(image);
 }
 
 //******************************************************************************
@@ -431,7 +431,7 @@ bool BitmapImpl::pointIsTransparent (const MinesPerfect::Point& p) const
 }
 
 //******************************************************************************
-class SoundImpl : public MinesPerfect::Sound, public wxWave
+class SoundImpl : public MinesPerfect::Sound, public wxSound
 //------------------------------------------------------------------------------
 {
 public:
@@ -447,28 +447,28 @@ MinesPerfect::CreateSound (const string& name)
 }
 
 //******************************************************************************
-SoundImpl::SoundImpl (const string& name) : wxWave()
+SoundImpl::SoundImpl (const string& name) : wxSound()
 //------------------------------------------------------------------------------
 {
   string fname = "./sound/" + name + ".wav";
 
   if (MinesPerfect::FileExist(fname))
-    wxWave::Create(fname.c_str());
+    wxSound::Create(fname.c_str());
 }
 
 //******************************************************************************
 bool SoundImpl::isOk()
 //------------------------------------------------------------------------------
 {
-  return wxWave::IsOk();
+  return wxSound::IsOk();
 }
 
 //******************************************************************************
 void SoundImpl::play()
 //------------------------------------------------------------------------------
 {
-  if (wxWave::IsOk())
-    wxWave::Play();
+  if (wxSound::IsOk())
+    wxSound::Play();
 }
 
 //******************************************************************************
