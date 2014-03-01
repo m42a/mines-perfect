@@ -453,7 +453,7 @@ SoundImpl::SoundImpl (const string& name) : wxSound()
   string fname = "./sound/" + name + ".wav";
 
   if (MinesPerfect::FileExist(fname))
-    wxSound::Create(fname.c_str());
+    wxSound::Create(wxString::FromUTF8(fname.c_str()));
 }
 
 //******************************************************************************
